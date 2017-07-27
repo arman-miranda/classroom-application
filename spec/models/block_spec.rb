@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Block, type: :model do
 
+  let(:some_block) { Block.new }
+
   it "has a name" do 
-    some_block = Block.new
     expect(some_block.name).to be_falsy
 
     some_block.name = "CS-B"
@@ -11,7 +12,6 @@ RSpec.describe Block, type: :model do
   end
 
   it "has a year level" do
-    some_block = Block.new
     expect(some_block.year_level).to be_falsy
 
     some_block.year_level = 1

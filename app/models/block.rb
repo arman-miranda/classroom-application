@@ -1,3 +1,2 @@
-class Block
-  attr_accessor :name, :year_level
+class Block < ApplicationRecord
 end
