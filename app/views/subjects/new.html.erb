@@ -1,5 +1,2 @@
-<% form_for(@subjects) do %>
-  <% f.label :name %>
-  <% f.textfield :name %>
-
-<% end %>
+<h1>Add a new subject</h1>
+<%= render 'form', subject: @subject %>

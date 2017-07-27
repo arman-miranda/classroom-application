@@ -15,12 +15,5 @@ RSpec.describe Subject, type: :model do
       subject.code = "CS101"
       expect(subject.code).to be_truthy
     end
-
-    it "can be taught by a teacher" do
-      sam = Teacher.new
-      subject.teachers << sam
-      expect(subject.teachers.count).to eq 1
-    end
-    
   end
 end
