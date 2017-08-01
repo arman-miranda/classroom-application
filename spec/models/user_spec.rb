@@ -3,19 +3,17 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) {User.new({email: "sample@sample.com", password: "secret"})}
   
-  it "is valid if it has a first name" do
-    expect(user).not_to be_valid
+  it "is valid if it has an email, password, firstname, lastname, birthdate, and address"
+  
+  it "is not valid if it doesn't have an email"
 
-    user.first_name = "Arman"
-    expect(user).to be_valid
-  end
+  it "is not valid if email has a duplicate"
 
-  it "is valid if it has a last name" do
-    expect(user).not_to be_valid
+  it "is not valid if it doesn't have a password"
 
-    user.last_name = "Miranda"
-    expect(user).to be_valid
-  end
+  it "is not valid if it doesn't have a firstname"
+
+  it "is not valid if it doesn't have a lastname"
 
   it "is valid if it has a birthdate"
 
