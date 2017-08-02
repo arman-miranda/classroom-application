@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   resources  :users
   resources :subjects
   
-  root 'subjects#show'
+  devise_scope :user do
+    root 'devise/sessions#new'
+  end
 end

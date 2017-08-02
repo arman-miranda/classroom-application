@@ -1,4 +1,5 @@
 ActiveAdmin.register User do
+  menu :if => proc{ can? :manage, User} 
   permit_params  :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :address
 
   index do
