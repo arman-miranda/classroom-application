@@ -46,6 +46,13 @@ RSpec.describe User, type: :model do
     expect(user.errors[:last_name]).to include("can't be blank")
   end
 
+  it "shows its full name" do
+    user.first_name = "Arman"
+    user.last_name  = "Miranda"
+
+    expect(user.full_name).to eq "Arman Miranda"
+  end
+
   it "is not valid if it doesn't have  a birthdate" do
     user.birthdate = nil
     user.valid?

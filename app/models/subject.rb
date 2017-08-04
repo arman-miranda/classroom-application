@@ -4,7 +4,7 @@ class Subject < ApplicationRecord
   has_many :users, through: :subjects_users
 
   def teachers
-   self.users.with_role :teacher
+    self.users.with_role :teacher
   end
 
   def students

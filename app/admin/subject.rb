@@ -2,7 +2,7 @@ ActiveAdmin.register Subject do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :name, :code
+permit_params :name, :code, user_ids: []
 #
 # or
 #
@@ -11,5 +11,25 @@ permit_params :name, :code
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+
+index do
+  selectable_column
+  id_column
+  column :name
+  column :code
+  column "Teachers" do |t|
+    t.teachers.map(&:full_name).join(", ")
+  end
+  actions
+end
+
+form do |f|
+  f.inputs do
+    f.input :name
+    f.input :code
+    f.input :users, as: :select, input_html: { multiple: true }, collection: User.with_role(:teacher) 
+  end
+  f.actions
+end
 
 end

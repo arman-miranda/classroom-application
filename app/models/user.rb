@@ -7,4 +7,9 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :birthdate, presence: true
   has_many :subjects_users
   has_many :subjects, through: :subjects_users
+
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
+
 end
