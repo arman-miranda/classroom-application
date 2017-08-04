@@ -6,6 +6,7 @@ class Ability
       can :manage, :all
       cannot :destroy, User, id: user.id
     elsif user.has_role? :teacher
+      can :manage, Subject
       can :read, :all
       cannot :manage, User
     else

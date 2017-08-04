@@ -7,4 +7,17 @@ FactoryGirl.define do
      f.birthdate  "June 25, 1997"
      f.address    "123 EZ St."
   end
+
+  factory :admin, parent: :user do
+    after :build { |user| user.add_role :admin }
+  end
+  
+  factory :teacher, parent: :user do
+    after :build { |user| user.add_role :teacher }
+    after :create { |user| user.add_role :teacher }
+  end
+  
+  factory :student, parent: :user do
+    after :build { |user| user.add_role :student }
+  end
 end

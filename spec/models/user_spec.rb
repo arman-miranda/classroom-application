@@ -1,9 +1,11 @@
 require 'rails_helper'
-require 'cancan/matchers'
 
 RSpec.describe User, type: :model do
   
-  let (:user) { FactoryGirl.build(:user) }
+  let (:user)    { FactoryGirl.build(:user) }
+  let (:admin)   { FactoryGirl.build(:admin) }
+  let (:teacher) { FactoryGirl.build(:teacher) }
+  let (:student) { FactoryGirl.build(:student) }
 
   it "has a valid factory" do
     expect(user).to be_valid
@@ -59,61 +61,46 @@ RSpec.describe User, type: :model do
   end
 
   context "#has_role? :admin" do
-    before(:each) do
-      user.add_role :admin
-    end
-
     it "is an admin" do
-      expect(user.has_role? :admin).to be true
+      expect(admin.has_role? :admin).to be true
     end
     
     it "is not a teacher" do
-      expect(user.has_role? :teacher).to be false
+      expect(admin.has_role? :teacher).to be false
     end
 
     it "is not a student" do
-      expect(user.has_role? :student).to be false
+      expect(admin.has_role? :student).to be false
     end
 
-    it "can manage all" do
-      expect(user).to be_able_to(:manage, :all)
-    end
   end
 
   context "#has_role? :teacher" do
-    before(:each) do
-      user.add_role :teacher
-    end
-
     it "is a teacher" do
-      expect(user.has_role? :teacher).to be true
+      expect(teacher.has_role? :teacher).to be true
     end
 
     it "is not an admin" do
-      expect(user.has_role? :admin).to be false
+      expect(teacher.has_role? :admin).to be false
     end
 
     it "is not a student" do
-      expect(user.has_role? :student).to be false
+      expect(teacher.has_role? :student).to be false
     end
 
   end
   
   context "#has_role? :student" do
-    before(:each) do
-      user.add_role :student
-    end
-
     it "is a student" do
-      expect(user.has_role? :student).to be true
+      expect(student.has_role? :student).to be true
     end
 
     it "is not a teacher" do
-      expect(user.has_role? :teacher).to be false
+      expect(student.has_role? :teacher).to be false
     end 
 
     it "is not an admin" do
-      expect(user.has_role? :admin).to be false
+      expect(student.has_role? :admin).to be false
     end
   end
 

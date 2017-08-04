@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   menu :if => proc{ can? :manage, User} 
-  permit_params  :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :address
+  permit_params  :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :address, role_ids: []
 
   index do
     selectable_column
@@ -8,6 +8,9 @@ ActiveAdmin.register User do
     column :first_name
     column :last_name
     column :email
+    column :roles do |role|
+      role.roles.map { |role| role.name }.join(", ")
+    end
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
@@ -26,6 +29,7 @@ ActiveAdmin.register User do
       f.input :email
       f.input :birthdate
       f.input :address
+      f.input :roles
       f.input :password
       f.input :password_confirmation
     end
