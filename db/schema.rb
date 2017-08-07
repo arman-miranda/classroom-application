@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804005953) do
+ActiveRecord::Schema.define(version: 20170807041711) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(version: 20170804005953) do
     t.datetime "birthdate"
     t.string   "address"
     t.string   "role"
+    t.integer  "block_id"
+    t.index ["block_id"], name: "index_users_on_block_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -89,4 +91,5 @@ ActiveRecord::Schema.define(version: 20170804005953) do
 
   add_foreign_key "subjects_users", "subjects"
   add_foreign_key "subjects_users", "users"
+  add_foreign_key "users", "blocks"
 end

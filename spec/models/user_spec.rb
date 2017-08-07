@@ -6,6 +6,11 @@ RSpec.describe User, type: :model do
   let (:admin)   { FactoryGirl.build(:admin) }
   let (:teacher) { FactoryGirl.build(:teacher) }
   let (:student) { FactoryGirl.build(:student) }
+  let (:subject1) { FactoryGirl.build(:subject) }
+  let (:subject2) { FactoryGirl.build(:subject, name: "C Programming", 
+                                       code: "CS102") }
+  let (:subject3) { FactoryGirl.build(:subject, name: "Filipino 1", 
+                                      code: "Fil 1") }
 
   it "has a valid factory" do
     expect(user).to be_valid
@@ -19,7 +24,7 @@ RSpec.describe User, type: :model do
   end
 
   it "is not valid if email has a duplicate" do
-    FactoryGirl.create(:user, email: "sample@sample.com")
+    FactoryGirl.create(:user)
 
     user.valid?
     expect(user.errors[:email]).to include("has already been taken")
@@ -55,6 +60,7 @@ RSpec.describe User, type: :model do
 
   it "is not valid if it doesn't have  a birthdate" do
     user.birthdate = nil
+
     user.valid?
     expect(user.errors[:birthdate]).to include("can't be blank")
   end
@@ -95,6 +101,19 @@ RSpec.describe User, type: :model do
       expect(teacher.has_role? :student).to be false
     end
 
+    it "has a subject that it teaches" do
+      teacher.subjects << subject1
+      expect(teacher.subjects).to include subject1
+    end
+
+    it "know which subjects it teaches" do
+      teacher.subjects << subject1
+      teacher.subjects << subject2
+
+      expect(teacher.subjects).to include subject1, subject2
+      expect(teacher.subjects).not_to include subject3
+    end
+
   end
   
   context "#has_role? :student" do
@@ -108,6 +127,19 @@ RSpec.describe User, type: :model do
 
     it "is not an admin" do
       expect(student.has_role? :admin).to be false
+    end
+
+    it "is capable of taking a subject" do
+      student.subjects << subject1
+      expect(student.subjects).to eq [subject1] 
+    end
+
+    it "is capable of taking multiple subjects" do
+      student.subjects << subject1
+      student.subjects << subject2
+
+      expect(student.subjects).to include  subject1, subject2
+      expect(student.subjects).not_to include subject3
     end
   end
 

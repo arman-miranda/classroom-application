@@ -29,7 +29,7 @@ ActiveAdmin.register User do
       f.input :email
       f.input :birthdate
       f.input :address
-      f.input :roles
+      f.input :roles, input_html: {multiple: false }
       f.input :password
       f.input :password_confirmation
     end

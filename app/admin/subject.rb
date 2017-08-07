@@ -27,7 +27,7 @@ form do |f|
   f.inputs do
     f.input :name
     f.input :code
-    f.input :users, as: :select, input_html: { multiple: true }, collection: User.with_role(:teacher) 
+    f.input :users, label: "Teachers", as: :select, input_html: { multiple: true }, collection: User.with_role(:teacher) 
   end
   f.actions
 end
