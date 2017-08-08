@@ -11,6 +11,7 @@ RSpec.describe User, type: :model do
                                        code: "CS102") }
   let (:subject3) { FactoryGirl.build(:subject, name: "Filipino 1", 
                                       code: "Fil 1") }
+  let (:block1) { FactoryGirl.build(:block) }
 
   it "has a valid factory" do
     expect(user).to be_valid
@@ -106,13 +107,21 @@ RSpec.describe User, type: :model do
       expect(teacher.subjects).to include subject1
     end
 
-    it "know which subjects it teaches" do
+    it "knows which subjects it teaches" do
       teacher.subjects << subject1
       teacher.subjects << subject2
 
       expect(teacher.subjects).to include subject1, subject2
       expect(teacher.subjects).not_to include subject3
     end
+
+    it "knows which class it advises" do
+      teacher.block = block1
+
+      expect(teacher.block).to eq block1 
+    end
+
+    it "knows which classes it teaches"
 
   end
   

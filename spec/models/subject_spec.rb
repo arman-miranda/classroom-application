@@ -8,10 +8,12 @@ RSpec.describe Subject, type: :model do
     }
 
     let (:teacher1) { FactoryGirl.create(:teacher) }
-    let (:teacher2) { FactoryGirl.create(:teacher, email: "sample1@sample.com") }
-    let (:student1) { FactoryGirl.create(:student, email: "sample2@sample.com") }
-    let (:student2) { FactoryGirl.create(:student, email: "sample3@sample.com") }
-    let (:admin)    { FactoryGirl.create(:admin,   email: "sample4@sample.com") }
+    let (:teacher2) { FactoryGirl.create(:teacher) }
+    let (:student1) { FactoryGirl.create(:student) }
+    let (:student2) { FactoryGirl.create(:student) }
+    let (:admin)    { FactoryGirl.create(:admin)   }
+    let (:block1)   { FactoryGirl.create(:block)   }
+    let (:block2)   { FactoryGirl.create(:block)   } 
     
     it "has a valid factory" do
       expect(subject1).to be_valid
@@ -57,7 +59,12 @@ RSpec.describe Subject, type: :model do
       expect(subject1.students).to eq([student1, student2])
     end
 
-    it "has to have at least one class"
+    it "can be assigned to multiple blocks" do
+      subject1.blocks << block1
+      subject1.blocks << block2
+
+      expect(subject1.blocks).to eq [block1, block2]
+    end
 
     it "identifies students are in a class"
 

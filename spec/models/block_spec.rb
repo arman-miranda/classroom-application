@@ -4,6 +4,7 @@ RSpec.describe Block, type: :model do
 
   let (:block1)   { FactoryGirl.build(:block) }
   let (:subject1) { FactoryGirl.build(:subject) }
+  let (:subject2) { FactoryGirl.build(:subject) }
   let (:student1) { FactoryGirl.build(:student) }
   let (:student2) { FactoryGirl.build(:student) }
   let (:teacher1) { FactoryGirl.build(:teacher) }
@@ -60,10 +61,17 @@ RSpec.describe Block, type: :model do
   end
 
   it "should have multiple teachers through subjects" do
+    pending
     block1.subjects << subject1
     block1.subjects << subject2
 
     expect(block1.subjects.teachers).to eq subject1.teachers, subject2.teachers
   end
+   it "should have multiple subjects" do
+     block1.subjects << subject1
+     block1.subjects << subject2
+
+     expect(block1.subjects).to eq [subject1, subject2]
+   end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807041711) do
+ActiveRecord::Schema.define(version: 20170807074607) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20170807041711) do
     t.integer  "year_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "blocks_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "block_id"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["block_id"], name: "index_blocks_subjects_on_block_id", using: :btree
+    t.index ["subject_id"], name: "index_blocks_subjects_on_subject_id", using: :btree
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -89,6 +98,8 @@ ActiveRecord::Schema.define(version: 20170807041711) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
+  add_foreign_key "blocks_subjects", "blocks"
+  add_foreign_key "blocks_subjects", "subjects"
   add_foreign_key "subjects_users", "subjects"
   add_foreign_key "subjects_users", "users"
   add_foreign_key "users", "blocks"
