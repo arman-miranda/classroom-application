@@ -66,8 +66,6 @@ RSpec.describe Subject, type: :model do
       expect(subject1.blocks).to eq [block1, block2]
     end
 
-    it "identifies students are in a class"
-
     it "could have subject prerequisites" 
 
     it "could have a final grade"

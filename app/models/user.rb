@@ -4,10 +4,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates :first_name, :last_name, :birthdate, presence: true
   has_many :subjects_users
   has_many :subjects, through: :subjects_users
-  belongs_to :block
+  belongs_to :block, optional: true
+  validates :first_name, :last_name, :birthdate, presence: true
 
   def full_name
     "#{self.first_name} #{self.last_name}"
