@@ -14,4 +14,8 @@ class Block < ApplicationRecord
     self.users.with_role :student
   end
 
+  def teachers
+    self.users.with_role :teacher
+  end
+
 end

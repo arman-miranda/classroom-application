@@ -8,6 +8,7 @@ RSpec.describe Block, type: :model do
   let (:student1) { FactoryGirl.build(:student) }
   let (:student2) { FactoryGirl.build(:student) }
   let (:teacher1) { FactoryGirl.build(:teacher) }
+  let (:teacher2) { FactoryGirl.build(:teacher) }
 
   it "has a valid factory" do
     expect(block1).to be_valid
@@ -57,15 +58,18 @@ RSpec.describe Block, type: :model do
     expect(block1.advisory_teacher).to eq teacher1
   end
 
-  it "should have multiple teachers through subjects" do
-    pending
+  it "knows all the teachers that teaches under it" do
+    subject1.users << [teacher1, teacher2, student1, student2]
     block1.subjects << subject1
-    block1.subjects << subject2
+    teacher1.assign(block1)
+    teacher1.save!
+    teacher2.assign(block1)
+    teacher2.save!
 
-    expect(block1.subjects.teachers).to eq subject1.teachers, subject2.teachers
+    expect(block1.teachers).to eq [teacher1, teacher2]
   end
 
-  it "should have multiple subjects" do
+  it "knows all the subject that is assigned under it" do
      block1.subjects << subject1
      block1.subjects << subject2
 
