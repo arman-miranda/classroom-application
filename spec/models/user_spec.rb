@@ -123,7 +123,16 @@ RSpec.describe User, type: :model do
       expect(teacher.advisory_block).not_to eq block2
     end
 
-    it "knows which classes it teaches"
+    it "knows which classes it teaches" do
+      subject1.blocks << block1
+      subject2.blocks << block2
+      teacher.subjects << subject1
+      teacher.subjects << subject2
+      teacher.blocks << teacher.subjects.first.blocks.first
+      teacher.blocks << teacher.subjects.last.blocks.first
+
+      expect(teacher.blocks).to eq [block1, block2]
+    end
 
   end
   

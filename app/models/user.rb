@@ -8,12 +8,18 @@ class User < ApplicationRecord
 
   has_many :subjects_users
   has_many :subjects, through: :subjects_users
+
   has_many :blocks_users
   has_many :blocks, through: :blocks_users
+  
   has_one  :advisory_block, class_name: "Block"
 
   def full_name
     "#{self.first_name} #{self.last_name}"
+  end
+  
+  def assign(block)
+    self.blocks << block
   end
 
 end
