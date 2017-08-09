@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808011326) do
+ActiveRecord::Schema.define(version: 20170809015836) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20170808011326) do
     t.integer  "year_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_blocks_on_user_id", using: :btree
   end
 
   create_table "blocks_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -40,6 +42,15 @@ ActiveRecord::Schema.define(version: 20170808011326) do
     t.datetime "updated_at", null: false
     t.index ["block_id"], name: "index_blocks_subjects_on_block_id", using: :btree
     t.index ["subject_id"], name: "index_blocks_subjects_on_subject_id", using: :btree
+  end
+
+  create_table "blocks_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "block_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["block_id"], name: "index_blocks_users_on_block_id", using: :btree
+    t.index ["user_id"], name: "index_blocks_users_on_user_id", using: :btree
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -68,13 +79,6 @@ ActiveRecord::Schema.define(version: 20170808011326) do
     t.index ["user_id"], name: "index_subjects_users_on_user_id", using: :btree
   end
 
-  create_table "teachers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_teachers_on_user_id", using: :btree
-  end
-
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -92,8 +96,6 @@ ActiveRecord::Schema.define(version: 20170808011326) do
     t.string   "last_name"
     t.datetime "birthdate"
     t.string   "address"
-    t.integer  "block_id"
-    t.index ["block_id"], name: "index_users_on_block_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -104,10 +106,11 @@ ActiveRecord::Schema.define(version: 20170808011326) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
+  add_foreign_key "blocks", "users"
   add_foreign_key "blocks_subjects", "blocks"
   add_foreign_key "blocks_subjects", "subjects"
+  add_foreign_key "blocks_users", "blocks"
+  add_foreign_key "blocks_users", "users"
   add_foreign_key "subjects_users", "subjects"
   add_foreign_key "subjects_users", "users"
-  add_foreign_key "teachers", "users"
-  add_foreign_key "users", "blocks"
 end

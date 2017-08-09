@@ -6,7 +6,7 @@ FactoryGirl.define do
      f.last_name  "Doe"
      f.birthdate  "June 25, 1997"
      f.address    "123 EZ St."
-     block 
+     blocks       {[]}
   end
 
   factory :admin, parent: :user do

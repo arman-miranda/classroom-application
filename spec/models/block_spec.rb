@@ -40,24 +40,21 @@ RSpec.describe Block, type: :model do
     expect(block1.errors[:year_level]).to include "can't be blank"
   end
 
-  it "should have students" do
-    student1.block = block1
+  it "knows its students" do
+    student1.blocks << block1
     student1.save!
-    student2.block = block1
+    student2.blocks << block1
     student2.save!
-    teacher1.block = block1
+    teacher1.blocks << block1
     teacher1.save!
 
     expect(block1.students).to eq [student1, student2]
   end
 
-  it "should have an advisory teacher" do
-    teacher1.block = block1
-    teacher1.save!
-    student1.block = block1
-    student1.save!
+  it "knows its advisor" do
+    block1.advisory_teacher = teacher1
 
-    expect(block1.advisor).to eq [teacher1]
+    expect(block1.advisory_teacher).to eq teacher1
   end
 
   it "should have multiple teachers through subjects" do
@@ -67,7 +64,8 @@ RSpec.describe Block, type: :model do
 
     expect(block1.subjects.teachers).to eq subject1.teachers, subject2.teachers
   end
-   it "should have multiple subjects" do
+
+  it "should have multiple subjects" do
      block1.subjects << subject1
      block1.subjects << subject2
 
