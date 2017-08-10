@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170809015836) do
+ActiveRecord::Schema.define(version: 20170810020405) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170809015836) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "grade"
     t.index ["subject_id"], name: "index_subjects_users_on_subject_id", using: :btree
     t.index ["user_id"], name: "index_subjects_users_on_user_id", using: :btree
   end

@@ -162,5 +162,13 @@ RSpec.describe User, type: :model do
       expect(student.subjects).not_to include subject3
     end
   end
+    
+    it "is capable of seeing its grades for a particular subject" do
+      pending
+      student.subjects << subject1
+      student.subjects.first.grade = 91
+      
+      expect(student.subjects.first.grade).to eq 91
+    end
 
 end
