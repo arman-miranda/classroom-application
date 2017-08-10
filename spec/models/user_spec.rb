@@ -163,12 +163,14 @@ RSpec.describe User, type: :model do
     end
   end
     
-    it "is capable of seeing its grades for a particular subject" do
-      pending
+    it "capable of seeing all its grades" do
       student.subjects << subject1
-      student.subjects.first.grade = 91
-      
-      expect(student.subjects.first.grade).to eq 91
+      student.subjects << subject2
+      student.save!
+      subject1.assign_grade(student, 75)
+      subject2.assign_grade(student, 91)
+
+      expect(student.subject_grades).to eq ({subject1.name => 75, subject2.name => 91})
     end
 
 end

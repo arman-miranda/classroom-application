@@ -32,10 +32,4 @@ class User < ApplicationRecord
     grade_list
   end
 
-  def assign_grade(subject, final_grade)
-  user = self.subjects_users.find_by_subject_id(subject)
-  user.grade = final_grade
-  user.save!
-  end
-
 end

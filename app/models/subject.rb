@@ -14,4 +14,10 @@ class Subject < ApplicationRecord
     self.users.with_role :student
   end
 
+  def assign_grade(user, final_grade)
+    user = self.subjects_users.find_by_user_id(user)
+    user.grade = final_grade
+    user.save!
+  end
+
 end

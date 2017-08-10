@@ -66,11 +66,17 @@ RSpec.describe Subject, type: :model do
       expect(subject1.blocks).to eq [block1, block2]
     end
 
-    it "could have subject prerequisites" 
+    it "could assign grades to its users" do
+      subject1.users << student1
+      subject1.save
+      subject1.assign_grade(subject1.users.first, 75)
 
-    it "could have a final grade"
+      expect(student1.subject_grades).to eq({subject1.name => 75})
+    end
     
     it "could be considered finished if graded"
+
+    it "could have subject prerequisites" 
     
     it "is appropriated to a certain year level"
     
