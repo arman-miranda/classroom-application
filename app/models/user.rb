@@ -22,4 +22,20 @@ class User < ApplicationRecord
     self.blocks << block
   end
 
+  def subject_grades
+    grade_list = Hash.new
+
+    self.subjects.each do |subject|
+      grade_list[subject.name] = self.subjects_users.find_by_subject_id(subject).grade
+    end
+
+    grade_list
+  end
+
+  def assign_grade(subject, final_grade)
+  user = self.subjects_users.find_by_subject_id(subject)
+  user.grade = final_grade
+  user.save!
+  end
+
 end
