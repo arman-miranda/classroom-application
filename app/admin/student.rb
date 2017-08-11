@@ -8,7 +8,7 @@ ActiveAdmin.register User, as: "Students" do
     column :last_name
     column :email
     column :blocks do |block|
-      block.blocks.map(&:comeplete_block_name).join(", ")
+      block.blocks.map(&:complete_block_name).join(", ")
     end
     actions
   end
@@ -22,10 +22,10 @@ ActiveAdmin.register User, as: "Students" do
     f.inputs do
       f.input :first_name
       f.input :last_name
+      f.input :blocks, input_html: { multiple: false }, member_label: :complete_block_name
       f.input :email
       f.input :birthdate
       f.input :address
-      f.input :roles, input_html: {multiple: false }
       f.input :password
       f.input :password_confirmation
     end
