@@ -1,6 +1,12 @@
 ActiveAdmin.register User, as: "Teachers" do
   permit_params  :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :address, subject_ids: []
-  
+
+  controller do
+    def scoped_collection
+      User.with_role :teacher
+    end
+  end
+
   index do
     selectable_column
     id_column
@@ -25,7 +31,7 @@ ActiveAdmin.register User, as: "Teachers" do
       f.input :email
       f.input :birthdate
       f.input :address
-      f.input :roles, input_html: {multiple: false }
+      f.input :subjects, input_html: { multiple: false }
       f.input :password
       f.input :password_confirmation
     end

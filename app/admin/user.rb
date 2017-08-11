@@ -1,9 +1,10 @@
-ActiveAdmin.register User do
+ActiveAdmin.register User, as: "Admin" do
   menu :if => proc{ can? :manage, User} 
   permit_params  :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :address, role_ids: []
+
   controller do
     def scoped_collection
-      User.with_role :teacher
+      User.with_role :admin
     end
   end
 

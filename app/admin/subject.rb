@@ -20,9 +20,9 @@ index do
   column "Blocks" do |block|
     block.blocks.map(&:complete_block_name).join(",")
   end
- #column "Teachers" do |t|
- #  t.teachers.map(&:full_name).join(", ")
- #end
+ column "Teachers" do |t|
+   t.teachers.map(&:full_name).join(", ")
+ end
   actions
 end
 
@@ -31,7 +31,6 @@ form do |f|
     f.input :name
     f.input :code
     f.input :blocks, as: :select, member_label: :complete_block_name 
-   #f.input :users, label: "Teachers", as: :select, input_html: { multiple: true }, collection: User.with_role(:teacher) 
   end
   f.actions
 end

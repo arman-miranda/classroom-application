@@ -1,5 +1,11 @@
 ActiveAdmin.register User, as: "Students" do
   permit_params  :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :address, subject_ids: [], block_ids: []
+
+  controller do
+    def scoped_collection
+      User.with_role :student
+    end
+  end
   
   index do
     selectable_column
