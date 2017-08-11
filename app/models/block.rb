@@ -18,4 +18,8 @@ class Block < ApplicationRecord
     self.users.with_role :teacher
   end
 
+  def complete_block_name
+    "#{self.year_level} - #{self.name}"
+  end
+
 end
