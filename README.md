@@ -22,7 +22,9 @@
 
   * All Users
     * ~~Shows all users and admins could give roles to any user.~~
-    * Can add, edit, and delete users
+    * Fix error where when adding a new role, the resource associated isn't destroyed.
+    * Fix error where student and teacher duplicates are possible.
+    * ~~Can add, edit, and delete users along with its associated resource~~
   
   * Teachers (Still not sure how to implement)
     * Should be able to be assigned to a teachable block. (Blocks where at least one of the subject he teaches is included)
