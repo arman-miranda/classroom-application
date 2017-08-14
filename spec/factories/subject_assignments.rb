@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :subjects_user do
+  factory :subject_assignment do
     subject nil
-    user nil
+    block nil
   end
 end

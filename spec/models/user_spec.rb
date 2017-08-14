@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   
   let (:user)    { FactoryGirl.build(:user) }
-  let (:admin)   { FactoryGirl.build(:admin) }
-  let (:teacher) { FactoryGirl.build(:teacher) }
-  let (:student) { FactoryGirl.build(:student) }
+  let (:admin1)   { FactoryGirl.build(:admin_role) }
+  let (:teacher1) { FactoryGirl.build(:teacher_role) }
+  let (:student1) { FactoryGirl.build(:student_role) }
   let (:subject1) { FactoryGirl.build(:subject) }
   let (:subject2) { FactoryGirl.build(:subject, name: "C Programming", 
                                        code: "CS102") }
@@ -75,102 +75,45 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid 
   end
 
-  context "#has_role? :admin" do
-    it "is an admin" do
-      expect(admin.has_role? :admin).to be true
-    end
-    
-    it "is not a teacher" do
-      expect(admin.has_role? :teacher).to be false
-    end
-
-    it "is not a student" do
-      expect(admin.has_role? :student).to be false
-    end
-
-  end
-
   context "#has_role? :teacher" do
-    it "is a teacher" do
-      expect(teacher.has_role? :teacher).to be true
-    end
-
-    it "is not an admin" do
-      expect(teacher.has_role? :admin).to be false
-    end
-
-    it "is not a student" do
-      expect(teacher.has_role? :student).to be false
-    end
-
-    it "has a subject that it teaches" do
-      teacher.subjects << subject1
-      expect(teacher.subjects).to include subject1
+    it "creates a resourse separate to the user" do
+      expect(Teacher.all).to include teacher1.teacher
     end
 
     it "knows which subjects it teaches" do
-      teacher.subjects << subject1
-      teacher.subjects << subject2
+      teacher1.teacher.subjects << subject1
+      teacher1.teacher.subjects << subject2
 
-      expect(teacher.subjects).to include subject1, subject2
-      expect(teacher.subjects).not_to include subject3
+      expect(teacher1.teacher.subjects).to eq [subject1, subject2]
     end
 
     it "knows which class it advises" do
-      teacher.advisory_block = block1
+      teacher1.teacher.advisory_block = block1
 
-      expect(teacher.advisory_block).to eq block1
-      expect(teacher.advisory_block).not_to eq block2
+      expect(teacher1.teacher.advisory_block).to eq block1
+      expect(block1.advisory_teacher).to eq teacher1.teacher
     end
 
-    it "knows which classes it teaches" do
-      subject1.blocks << block1
-      subject2.blocks << block2
-      teacher.subjects << subject1
-      teacher.subjects << subject2
-      teacher.blocks << teacher.subjects.first.blocks.first
-      teacher.blocks << teacher.subjects.last.blocks.first
-
-      expect(teacher.blocks).to eq [block1, block2]
-    end
+    it "knows which classes it teaches"
 
   end
   
   context "#has_role? :student" do
-    it "is a student" do
-      expect(student.has_role? :student).to be true
+    it "creates a resource separate to the user" do
+      expect(Student.all).to include student1.student
     end
 
-    it "is not a teacher" do
-      expect(student.has_role? :teacher).to be false
-    end 
+    it "can be added to a block" do
+      student1.student.block = block1
 
-    it "is not an admin" do
-      expect(student.has_role? :admin).to be false
+      expect(student1.student.block).to eq block1
     end
+    
+    it "can retrieve all subjects taken from the block"do
+      block1.subjects << subject1
+      student1.student.block = block1
 
-    it "is capable of taking a subject" do
-      student.subjects << subject1
-      expect(student.subjects).to eq [subject1] 
-    end
-
-    it "is capable of taking multiple subjects" do
-      student.subjects << subject1
-      student.subjects << subject2
-
-      expect(student.subjects).to include  subject1, subject2
-      expect(student.subjects).not_to include subject3
+      expect(student1.student.subjects).to eq [subject1]
     end
   end
-    
-    it "capable of seeing all its grades" do
-      student.subjects << subject1
-      student.subjects << subject2
-      student.save!
-      subject1.assign_grade(student, 75)
-      subject2.assign_grade(student, 91)
-
-      expect(student.subject_grades).to eq ({subject1.name => 75, subject2.name => 91})
-    end
-
 end

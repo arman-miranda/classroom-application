@@ -1,5 +1,5 @@
 ActiveAdmin.register User, as: "Teachers" do
-  permit_params  :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :address, subject_ids: []
+  permit_params  :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :address, subject_ids: [], block_ids: []
 
   controller do
     def scoped_collection
@@ -32,6 +32,7 @@ ActiveAdmin.register User, as: "Teachers" do
       f.input :birthdate
       f.input :address
       f.input :subjects, input_html: { multiple: false }
+      f.input :blocks, collection: f.object.subjects.first.blocks
       f.input :password
       f.input :password_confirmation
     end

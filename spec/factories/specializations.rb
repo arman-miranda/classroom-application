@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :blocks_subject do
-    block nil
+  factory :specialization do
+    teacher nil
     subject nil
   end
 end

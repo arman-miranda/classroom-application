@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810020405) do
+ActiveRecord::Schema.define(version: 20170814044811) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -26,31 +26,24 @@ ActiveRecord::Schema.define(version: 20170810020405) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
   end
 
+  create_table "block_assignments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "student_id"
+    t.integer  "teacher_id"
+    t.integer  "block_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["block_id"], name: "index_block_assignments_on_block_id", using: :btree
+    t.index ["student_id"], name: "index_block_assignments_on_student_id", using: :btree
+    t.index ["teacher_id"], name: "index_block_assignments_on_teacher_id", using: :btree
+  end
+
   create_table "blocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "year_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
-    t.index ["user_id"], name: "index_blocks_on_user_id", using: :btree
-  end
-
-  create_table "blocks_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "block_id"
-    t.integer  "subject_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["block_id"], name: "index_blocks_subjects_on_block_id", using: :btree
-    t.index ["subject_id"], name: "index_blocks_subjects_on_subject_id", using: :btree
-  end
-
-  create_table "blocks_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "block_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["block_id"], name: "index_blocks_users_on_block_id", using: :btree
-    t.index ["user_id"], name: "index_blocks_users_on_user_id", using: :btree
+    t.integer  "teacher_id"
+    t.index ["teacher_id"], name: "index_blocks_on_teacher_id", using: :btree
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -63,21 +56,47 @@ ActiveRecord::Schema.define(version: 20170810020405) do
     t.index ["name"], name: "index_roles_on_name", using: :btree
   end
 
+  create_table "specializations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "teacher_id"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_specializations_on_subject_id", using: :btree
+    t.index ["teacher_id"], name: "index_specializations_on_teacher_id", using: :btree
+  end
+
+  create_table "students", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_students_on_user_id", using: :btree
+  end
+
+  create_table "subject_assignments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "subject_id"
+    t.integer  "block_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "teacher_id"
+    t.index ["block_id"], name: "index_subject_assignments_on_block_id", using: :btree
+    t.index ["subject_id"], name: "index_subject_assignments_on_subject_id", using: :btree
+    t.index ["teacher_id"], name: "index_subject_assignments_on_teacher_id", using: :btree
+  end
+
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "block_id"
+    t.index ["block_id"], name: "index_subjects_on_block_id", using: :btree
   end
 
-  create_table "subjects_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "subject_id"
+  create_table "teachers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "grade"
-    t.index ["subject_id"], name: "index_subjects_users_on_subject_id", using: :btree
-    t.index ["user_id"], name: "index_subjects_users_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_teachers_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -97,6 +116,7 @@ ActiveRecord::Schema.define(version: 20170810020405) do
     t.string   "last_name"
     t.datetime "birthdate"
     t.string   "address"
+    t.string   "type"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -107,11 +127,16 @@ ActiveRecord::Schema.define(version: 20170810020405) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
-  add_foreign_key "blocks", "users"
-  add_foreign_key "blocks_subjects", "blocks"
-  add_foreign_key "blocks_subjects", "subjects"
-  add_foreign_key "blocks_users", "blocks"
-  add_foreign_key "blocks_users", "users"
-  add_foreign_key "subjects_users", "subjects"
-  add_foreign_key "subjects_users", "users"
+  add_foreign_key "block_assignments", "blocks"
+  add_foreign_key "block_assignments", "students"
+  add_foreign_key "block_assignments", "teachers"
+  add_foreign_key "blocks", "teachers"
+  add_foreign_key "specializations", "subjects"
+  add_foreign_key "specializations", "teachers"
+  add_foreign_key "students", "users"
+  add_foreign_key "subject_assignments", "blocks"
+  add_foreign_key "subject_assignments", "subjects"
+  add_foreign_key "subject_assignments", "teachers"
+  add_foreign_key "subjects", "blocks"
+  add_foreign_key "teachers", "users"
 end

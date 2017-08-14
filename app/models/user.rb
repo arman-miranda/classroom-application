@@ -1,18 +1,14 @@
 class User < ApplicationRecord
-  rolify
+  rolify after_add: :create_resource
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :first_name, :last_name, :birthdate, presence: true
 
-  has_many :subjects_users
-  has_many :subjects, through: :subjects_users
+  has_one :teacher, dependent: :destroy
+  has_one :student, dependent: :destroy
 
-  has_many :blocks_users
-  has_many :blocks, through: :blocks_users
-  
-  has_one  :advisory_block, class_name: "Block"
 
   def full_name
     "#{self.first_name} #{self.last_name}"
@@ -30,6 +26,16 @@ class User < ApplicationRecord
     end
 
     grade_list
+  end
+
+  private
+
+  def create_resource(role)
+    if self.has_role? :teacher
+      Teacher.create(user:self)
+    elsif self.has_role? :student
+      Student.create(user:self)
+    end
   end
 
 end

@@ -29,6 +29,7 @@ ActiveAdmin.register User, as: "Students" do
       f.input :first_name
       f.input :last_name
       f.input :blocks, input_html: { multiple: false }, member_label: :complete_block_name
+      f.input :subjects, input_html: { value: f.object.blocks.first.subjects }, as: :hidden
       f.input :email
       f.input :birthdate
       f.input :address
