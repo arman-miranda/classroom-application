@@ -15,3 +15,22 @@
   * ~~Teacher should be able to assigned to various teaching assignments.~~
     * ~~Teacher should be able to know what block the teaching assignment is on.~~
     * ~~Teacher should be able to know what subject he is going to be teaching in a particular teaching assignment~~
+
+* Active Admin CRUD
+
+  * All Users
+    * ~~Shows all users and admins could give roles to any user.~~
+    * Can add, edit, and delete users
+  
+  * Teachers (Still not sure how to implement)
+    * Should be able to be assigned to a teachable block. (Blocks where at least one of the subject he teaches is included)
+
+  * Student
+    * ~~Should be able to be assigned to a block.~~
+    * ~~Subjects should be able to be automatically accessed by the Students by block assignment.~~
+  
+  * Subjects
+    * Can be assigned to a block.
+  * Blocks
+    * Can be assigned a class advisor.
+    * Can be assigned subjects that it contains.
