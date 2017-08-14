@@ -2,14 +2,14 @@
 
 * ~~Split Users to two resources that has different functions (Teachers and Students)~~
 
-* ###Student:
+* ### Student:
 
   * ~~Student should be able to be added to a block~~
 
     * ~~Students should be automatically be able to access every subject the block has.~~
     * Students should be able to check their final grades for each subjects
 
-* ###Teacher: 
+* ### Teacher: 
   
   * ~~Teacher should be able to be assigned to an advisory block.~~
   * ~~Teacher should be able to assigned to various teaching assignments.~~
@@ -18,7 +18,7 @@
 
 ---
 
-* ###Active Admin CRUD
+* ### Active Admin CRUD
 
   * All Users
     * ~~Shows all users and admins could give roles to any user.~~
