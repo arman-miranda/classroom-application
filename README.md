@@ -1,24 +1,17 @@
-# README
+# Things to be done and things that are done in this implementation.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* ~~Split Users to two resources that has different functions (Teachers and Students)~~
 
-Things you may want to cover:
+* Student:
 
-* Ruby version
+  * ~~Student should be able to be added to a block~~
 
-* System dependencies
+    * ~~Students should be automatically be able to access every subject the block has.~~
+    * Students should be able to check their final grades for each subjects
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Teacher: 
+  
+  * ~~Teacher should be able to be assigned to an advisory block.~~
+  * ~~Teacher should be able to assigned to various teaching assignments.~~
+    * ~~Teacher should be able to know what block the teaching assignment is on.~~
+    * ~~Teacher should be able to know what subject he is going to be teaching in a particular teaching assignment~~
