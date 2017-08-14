@@ -1,6 +1,7 @@
 # Things to be done and things that are done in this implementation.
 
-* ~~Split Users to two resources that has different functions (Teachers and Students)~~
+* ### Notable Changes from the Master Branch:
+  * ~~Split Users to two resources that has different functions (Teachers and Students)~~
 
 * ### Student:
 
@@ -20,22 +21,23 @@
 
 * ### Active Admin CRUD
 
-  * All Users
+  * #### All Users
     * ~~Shows all users and admins could give roles to any user.~~
     * Fix error where when adding a new role, the resource associated isn't destroyed.
     * Fix error where student and teacher duplicates are possible.
     * ~~Can add, edit, and delete users along with its associated resource~~
   
-  * Teachers (Still not sure how to implement)
+  * #### Teachers (Still not sure how to implement)
     * Should be able to be assigned to a teachable block. (Blocks where at least one of the subject he teaches is included)
 
-  * Student
+  * #### Student
     * ~~Should be able to be assigned to a block.~~
     * ~~Subjects should be able to be automatically accessed by the Students by block assignment.~~
   
-  * Subjects
+  * #### Subjects
     * Can be assigned to a block.
-  * Blocks
+
+  * #### Blocks
     * Can be assigned a class advisor.
     * Can be assigned subjects that it contains.
 

@@ -1,5 +1,6 @@
 ActiveAdmin.register Student do
 permit_params :user_id, block_ids: [], subject_ids: []
+actions :all, except: [:new]
 
 index do
   selectable_column
