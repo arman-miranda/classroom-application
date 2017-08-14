@@ -5,6 +5,8 @@
 
 ---
 
+* ##Listings
+
   * ### Student:
 
     * ~~Student should be able to be added to a block~~
@@ -12,12 +14,25 @@
       * ~~Students should be automatically be able to access every subject the block has.~~
       * Students should be able to check their final grades for each subjects
 
-* ### Teacher: 
+  * ### Teacher: 
   
-  * ~~Teacher should be able to be assigned to an advisory block.~~
-  * ~~Teacher should be able to assigned to various teaching assignments.~~
-    * ~~Teacher should be able to know what block the teaching assignment is on.~~
-    * ~~Teacher should be able to know what subject he is going to be teaching in a particular teaching assignment~~
+    * ~~Teacher should be able to be assigned to an advisory block.~~
+    * ~~Teacher should be able to assigned to various teaching assignments.~~
+
+      * ~~Teacher should be able to know what block the teaching assignment is on.~~
+      * ~~Teacher should be able to know what subject he is going to be teaching in a particular teaching assignment~~
+  
+  * ### Class:
+    
+    * ~~Should be able to be assigned many different subjects.~~
+    * ~~Should be able to be assigned with many students.~~
+    * ~~Should be able to recognized and be assigned with an advisory block.~~
+
+  * ### Subject: 
+
+    * It should be able to recognize the block it is assigned to.
+    * It should be able to recognize and assign teachers that can teach the subject.
+    * It should be able to recognize students that takes this subject.
 
 ---
 
