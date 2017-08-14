@@ -1,12 +1,7 @@
-ActiveAdmin.register User, as: "Admin" do
+ActiveAdmin.register User, as: "All Users" do
   menu :if => proc{ can? :manage, User} 
-  permit_params  :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :address, role_ids: []
 
-  controller do
-    def scoped_collection
-      User.with_role :admin
-    end
-  end
+  permit_params  :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :address, role_ids: []
 
   index do
     selectable_column
@@ -15,7 +10,7 @@ ActiveAdmin.register User, as: "Admin" do
     column :last_name
     column :email
     column :roles do |role|
-      role.roles.map { |role| role.name }.join(", ")
+      role.roles.map(&:name).join(", ")
     end
     column :current_sign_in_at
     column :sign_in_count

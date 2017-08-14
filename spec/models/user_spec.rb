@@ -80,7 +80,7 @@ RSpec.describe User, type: :model do
       expect(Teacher.all).to include teacher1.teacher
     end
 
-    it "knows which subjects it teaches" do
+    it "knows which subjects it can teaches" do
       teacher1.teacher.subjects << subject1
       teacher1.teacher.subjects << subject2
 
@@ -94,7 +94,9 @@ RSpec.describe User, type: :model do
       expect(block1.advisory_teacher).to eq teacher1.teacher
     end
 
-    it "knows which classes it teaches"
+    it "knows which classes it teaches" do
+      
+    end
 
   end
   
@@ -115,5 +117,7 @@ RSpec.describe User, type: :model do
 
       expect(student1.student.subjects).to eq [subject1]
     end
+
+    it "can view all grades per subject"
   end
 end

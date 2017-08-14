@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814044811) do
+ActiveRecord::Schema.define(version: 20170814080358) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -28,13 +28,11 @@ ActiveRecord::Schema.define(version: 20170814044811) do
 
   create_table "block_assignments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "student_id"
-    t.integer  "teacher_id"
     t.integer  "block_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["block_id"], name: "index_block_assignments_on_block_id", using: :btree
     t.index ["student_id"], name: "index_block_assignments_on_student_id", using: :btree
-    t.index ["teacher_id"], name: "index_block_assignments_on_teacher_id", using: :btree
   end
 
   create_table "blocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -129,7 +127,6 @@ ActiveRecord::Schema.define(version: 20170814044811) do
 
   add_foreign_key "block_assignments", "blocks"
   add_foreign_key "block_assignments", "students"
-  add_foreign_key "block_assignments", "teachers"
   add_foreign_key "blocks", "teachers"
   add_foreign_key "specializations", "subjects"
   add_foreign_key "specializations", "teachers"
