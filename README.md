@@ -3,12 +3,14 @@
 * ### Notable Changes from the Master Branch:
   * ~~Split Users to two resources that has different functions (Teachers and Students)~~
 
-* ### Student:
+---
 
-  * ~~Student should be able to be added to a block~~
+  * ### Student:
 
-    * ~~Students should be automatically be able to access every subject the block has.~~
-    * Students should be able to check their final grades for each subjects
+    * ~~Student should be able to be added to a block~~
+
+      * ~~Students should be automatically be able to access every subject the block has.~~
+      * Students should be able to check their final grades for each subjects
 
 * ### Teacher: 
   
