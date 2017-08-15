@@ -1,5 +1,5 @@
 ActiveAdmin.register Block do
-permit_params :name, :year_level, :teacher_id
+permit_params :name, :year_level, :teacher_id, subject_ids: []
 
   index do
     selectable_column
@@ -13,6 +13,9 @@ permit_params :name, :year_level, :teacher_id
         'Not yet assigned'
       end
     end
+    column :subjects do |subject| 
+      subject.subjects.map(&:name).join(", ")
+    end
     actions
   end
 
@@ -21,6 +24,7 @@ permit_params :name, :year_level, :teacher_id
       f.input :year_level, as: :select, collection: (1..4)
       f.input :name
       f.input :advisory_teacher, as: :select,  collection: User.with_role(:teacher)
+      f.input :subjects, collection: Subject.all
     end
     f.actions
   end
