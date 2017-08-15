@@ -38,7 +38,7 @@
 
 * ### Active Admin CRUD
 
-  * #### All Users
+  * #### ~~All Users~~
     * ~~Shows all users and admins could give roles to any user.~~
     * ~~Fix error where when adding a new role, the resource associated isn't destroyed.~~
     * ~~Can add, edit, and delete users along with its associated resource~~
