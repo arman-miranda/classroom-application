@@ -1,4 +1,4 @@
-# Things to be done and things that are done in this implementation.
+## Things to be done and things that are done in this implementation.
 
 * ### Notable Changes from the Master Branch:
   * ~~Split Users to two resources that has different functions (Teachers and Students)~~
