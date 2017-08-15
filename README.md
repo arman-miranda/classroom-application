@@ -53,7 +53,7 @@
   
   * #### ~~Subjects~~
     * ~~Can be assigned to a block.~~
-    * Can be assigned teachers that teaches can teach this subject
+    * ~~Can be assigned teachers that teaches can teach this subject.~~
 
   * #### ~~Blocks~~
     * ~~Can be assigned a class advisor.~~
