@@ -30,8 +30,8 @@
 
   * ### Subject: 
 
-    * It should be able to recognize the block it is assigned to.
-    * It should be able to recognize and assign teachers that can teach the subject.
+    * ~~It should be able to recognize the block it is assigned to.~~
+    * ~~It should be able to recognize and assign teachers that can teach the subject.~~
     * It should be able to recognize students that takes this subject.
 
 ---
@@ -57,5 +57,12 @@
 
   * #### ~~Blocks~~
     * ~~Can be assigned a class advisor.~~
+
+---
+
+* ### Tests
+  * ~~Users~~
+  * Subjects
+  * ~~Blocks~~
 
 ---

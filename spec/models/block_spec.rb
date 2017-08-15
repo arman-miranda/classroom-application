@@ -46,8 +46,6 @@ RSpec.describe Block, type: :model do
     student1.save!
     student2.blocks << block1
     student2.save!
-    teacher1.blocks << block1
-    teacher1.save!
 
     expect(block1.students).to eq [student1, student2]
   end
@@ -56,17 +54,6 @@ RSpec.describe Block, type: :model do
     block1.advisory_teacher = teacher1
 
     expect(block1.advisory_teacher).to eq teacher1
-  end
-
-  it "knows all the teachers that teaches under it" do
-    subject1.users << [teacher1, teacher2, student1, student2]
-    block1.subjects << subject1
-    teacher1.assign(block1)
-    teacher1.save!
-    teacher2.assign(block1)
-    teacher2.save!
-
-    expect(block1.teachers).to eq [teacher1, teacher2]
   end
 
   it "knows all the subject that is assigned under it" do

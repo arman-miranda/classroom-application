@@ -1,7 +1,7 @@
 class Block < ApplicationRecord
   validates :name, :year_level, presence: true
   validates :name, uniqueness: { scope: :year_level }
-  validates :advisory_teacher, uniqueness: true
+  validates :advisory_teacher, uniqueness: true, allow_nil: true
 
   has_many :block_assignments
   has_many :students, through: :block_assignments
