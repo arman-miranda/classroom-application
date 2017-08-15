@@ -8,7 +8,7 @@
   * All virtual classrooms adds the teachers and students automatically
 
 ---
-* Pages
+* ### Pages
   
   * Can be accessed by all:
     * Profile Page
