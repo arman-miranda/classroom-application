@@ -51,11 +51,10 @@
     * ~~Should be able to be assigned to a block.~~
     * ~~Subjects should be able to be automatically accessed by the Students by block assignment.~~
   
-  * #### Subjects
-    * Can be assigned to a block.
+  * #### ~~Subjects~~
+    * ~~Can be assigned to a block.~~
 
-  * #### Blocks
+  * #### ~~Blocks~~
     * ~~Can be assigned a class advisor.~~
-    * ~~Can be assigned subjects that it contains.~~
 
 ---
