@@ -35,28 +35,29 @@ RSpec.describe Subject, type: :model do
     end
     
     it "is able to identify a teacher who teaches it" do
-      subject1.users << [teacher1]
-      expect(subject1.users.last.has_role? :teacher).to be true
+      subject1.teachers << [teacher1]
+      expect(subject1.teachers).to eq [teacher1]
     end
 
     it "is able to identify all the teachers who teaches it" do
+      subject1.teachers << [teacher1, teacher2]
 
-      subject1.users << [teacher1, teacher2, admin, student1]
-      subject1.save
-
-      expect(subject1.teachers).to eq([teacher1, teacher2])
+      expect(subject1.teachers).to eq [teacher1, teacher2]
     end
     
     it "is able to identify a student who takes it" do
-      subject1.users << [student1]
-      expect(subject1.users.last.has_role? :student).to be true
+      block1.subjects << subject1
+      student1.blocks << block1
+
+      expect(subject1.students).to eq [student1]
     end
 
     it "is able to identify all the students who takes it" do
-      subject1.users << [teacher1, teacher2, admin, student1, student2]
-      subject1.save
+      block1.subjects << subject1
+      student1.blocks << block1
+      student2.blocks << block1
 
-      expect(subject1.students).to eq([student1, student2])
+      expect(subject1.students).to eq [student1, student2]
     end
 
     it "can be assigned to multiple blocks" do
@@ -66,13 +67,7 @@ RSpec.describe Subject, type: :model do
       expect(subject1.blocks).to eq [block1, block2]
     end
 
-    it "could assign grades to its users" do
-      subject1.users << student1
-      subject1.save
-      subject1.assign_grade(subject1.users.first, 75)
-
-      expect(student1.subject_grades).to eq({subject1.name => 75})
-    end
+    it "could assign grades to its users"
     
     it "could be considered finished if graded"
 
