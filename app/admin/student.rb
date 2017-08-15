@@ -17,7 +17,7 @@ end
 
 form do |f|
   f.inputs do
-    f.input :blocks, member_label: :complete_block_name
+    f.input :blocks, member_label: :complete_block_name, input_html: { multiple: false }
     f.actions
   end
 end
