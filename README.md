@@ -56,6 +56,6 @@
 
   * #### Blocks
     * ~~Can be assigned a class advisor.~~
-    * Can be assigned subjects that it contains.
+    * ~~Can be assigned subjects that it contains.~~
 
 ---
