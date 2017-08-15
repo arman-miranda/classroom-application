@@ -1,8 +1,33 @@
 ## Things to be done and things that are done in this implementation.
 
-* ### Notable Changes from the Master Branch:
+* ### Notes:
   * ~~Split Users to two resources that has different functions (Teachers and Students)~~
+  * ~~No anonymous users~~
+  * Subjects has their own virtual classrooms
+  * A Block also has their own virtual classroom
+  * All virtual classrooms adds the teachers and students automatically
 
+---
+* Pages
+  
+  * Can be accessed by all:
+    * Profile Page
+      * Can only edit email and password
+      * Can view all info of user
+    * ~~Login Page(with Devise)~~
+  
+  * Student pages
+    * List of Subjects
+    * List of Grades per Subject(Final grade only, blank if not yet computed)
+
+  * Teacher pages
+    * List of student per class he handles.
+    * List of assignments/lectures/lessons per class.
+    * List of exam schedule per class.
+  
+  * ~~Admin pages~~
+    * ~~Admin page~~
+    * ~~List of users~~
 ---
 
 * ## Listings
