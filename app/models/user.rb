@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  rolify after_add: :create_resource
+  rolify after_add: :create_resource, before_remove: :destroy_resource
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,6 +35,14 @@ class User < ApplicationRecord
       Teacher.create(user:self)
     elsif self.has_role? :student
       Student.create(user:self)
+    end
+  end
+
+  def destroy_resource(role)
+    if Teacher.exists?(user:self)
+      Teacher.where(user:self).destroy_all
+    elsif Student.exists?(user:self)
+      Student.where(user:self).destroy_all
     end
   end
 

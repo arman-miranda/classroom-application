@@ -40,8 +40,7 @@
 
   * #### All Users
     * ~~Shows all users and admins could give roles to any user.~~
-    * Fix error where when adding a new role, the resource associated isn't destroyed.
-    * Fix error where student and teacher duplicates are possible.
+    * ~~Fix error where when adding a new role, the resource associated isn't destroyed.~~
     * ~~Can add, edit, and delete users along with its associated resource~~
   
   * #### Teachers (Still not sure how to implement)
