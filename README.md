@@ -36,15 +36,15 @@
 
 ---
 
-* ### Active Admin CRUD
+* ### ~~Active Admin CRUD~~
 
   * #### ~~All Users~~
     * ~~Shows all users and admins could give roles to any user.~~
     * ~~Fix error where when adding a new role, the resource associated isn't destroyed.~~
     * ~~Can add, edit, and delete users along with its associated resource~~
   
-  * #### Teachers (Still not sure how to implement)
-    * Should be able to be assigned to a teachable block. (Blocks where at least one of the subject he teaches is included)
+  * #### ~~Teachers~~ 
+    * ~~Should be able to be assigned to a teachable block. (Blocks where at least one of the subject he teaches is included)~~
 
   * #### ~~Student~~
     * ~~Should be able to be assigned to a block.~~
@@ -59,7 +59,7 @@
 
 ---
 
-* ### Tests
+* ### ~~Tests~~
   * ~~Users~~
   * ~~Subjects~~ -> Has more tests but for extra features only
   * ~~Blocks~~
