@@ -106,14 +106,14 @@ RSpec.describe User, type: :model do
     end
 
     it "can be added to a block" do
-      student1.student.block = block1
+      student1.student.blocks << block1
 
-      expect(student1.student.block).to eq block1
+      expect(student1.student.blocks.first).to eq block1
     end
     
     it "can retrieve all subjects taken from the block"do
       block1.subjects << subject1
-      student1.student.block = block1
+      student1.student.blocks <<  block1
 
       expect(student1.student.subjects).to eq [subject1]
     end

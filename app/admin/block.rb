@@ -23,8 +23,7 @@ permit_params :name, :year_level, :teacher_id, subject_ids: []
     f.inputs do
       f.input :year_level, as: :select, collection: (1..4)
       f.input :name
-      f.input :advisory_teacher, as: :select,  collection: User.with_role(:teacher)
-      f.input :subjects, collection: Subject.all
+      f.input :advisory_teacher,  collection: Teacher.all, member_label: :teacher_name
     end
     f.actions
   end
