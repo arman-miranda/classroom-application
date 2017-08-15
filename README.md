@@ -28,11 +28,11 @@
     * ~~Should be able to be assigned with many students.~~
     * ~~Should be able to recognized and be assigned with an advisory block.~~
 
-  * ### Subject: 
+  * ### ~~Subject:~~
 
     * ~~It should be able to recognize the block it is assigned to.~~
     * ~~It should be able to recognize and assign teachers that can teach the subject.~~
-    * It should be able to recognize students that takes this subject.
+    * ~~It should be able to recognize students that takes this subject.~~
 
 ---
 
@@ -62,7 +62,7 @@
 
 * ### Tests
   * ~~Users~~
-  * Subjects
+  * ~~Subjects~~ -> Has more tests but for extra features only
   * ~~Blocks~~
 
 ---
