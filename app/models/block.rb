@@ -9,6 +9,7 @@ class Block < ApplicationRecord
   has_many :subjects, through: :subject_assignments
 
   belongs_to :advisory_teacher, class_name: "Teacher", foreign_key: "teacher_id", optional: true
+  accepts_nested_attributes_for :advisory_teacher
 
 
   def teachers
