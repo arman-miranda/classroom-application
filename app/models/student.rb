@@ -1,9 +1,9 @@
 class Student < ApplicationRecord
-  after_create :associate_block
+ #after_create :associate_block
   belongs_to :user, optional: true
 
-  has_one  :block_assignment
-  has_many :blocks, through: :block_assignment
+  has_one  :block_assignment, dependent: :nullify
+  has_many :blocks, through: :block_assignment, dependent: :nullify
 
   has_many   :subjects, through: :blocks
 

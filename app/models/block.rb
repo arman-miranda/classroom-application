@@ -3,8 +3,8 @@ class Block < ApplicationRecord
   validates :name, uniqueness: { scope: :year_level }
   validates :advisory_teacher, uniqueness: true, allow_nil: true
 
-  has_many :block_assignments
-  has_many :students, through: :block_assignments
+  has_many :block_assignments, dependent: :nullify
+  has_many :students, through: :block_assignments, dependent: :nullify
   
   has_many :subject_assignments
   has_many :subjects, through: :subject_assignments

@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="form-group">
+    <%= f.label :blocks %>
+    <%= f.collection_select(:block_ids, Block.all, :id, :name) %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

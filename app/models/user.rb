@@ -1,10 +1,12 @@
 class User < ApplicationRecord
+ before_create :skip_sending_email
   rolify after_add: :create_resource, before_remove: :destroy_resource
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
   validates :first_name, :last_name, :birthdate, presence: true
+  attr_accessor :temp_block
 
   has_one :teacher, dependent: :destroy
   has_one :student, dependent: :destroy
@@ -44,6 +46,10 @@ class User < ApplicationRecord
     elsif Student.exists?(user:self)
       Student.where(user:self).destroy_all
     end
+  end
+
+  def skip_sending_email
+    self.skip_confirmation_notification!
   end
 
 end

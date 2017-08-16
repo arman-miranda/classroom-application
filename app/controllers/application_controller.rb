@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :authenticate_user!, 
-    :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user! 
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def access_denied(exception)
     redirect_to users_path, alert: exception.message
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     elsif current_user.has_role? :student
       block_path(block: user_block)
     elsif current_user.has_role? :teacher
-
+      #Not yet implemented
     end
   end
 

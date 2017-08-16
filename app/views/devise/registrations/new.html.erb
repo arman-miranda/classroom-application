@@ -34,8 +34,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :block %>
-    <%= f.collection_select(:block_ids, Block.all, :id, :name) %>
+    <%= f.label "Block" %>
+    <%= f.collection_select(:temp_block, Block.all, :id, :complete_block_name) %>
   </div>
 
   <div class="form-group">
