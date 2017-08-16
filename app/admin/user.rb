@@ -29,6 +29,7 @@ ActiveAdmin.register User, as: "All Users" do
       f.input :roles, input_html: {multiple: false }
       f.input :password
       f.input :password_confirmation
+      f.input :confirmed_at, as: :check_boxes, collection:[Time.now], member_label: "Confirm information?"
     end
     f.actions
   end

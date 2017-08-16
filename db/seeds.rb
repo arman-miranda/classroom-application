@@ -17,6 +17,7 @@ User.create!(
   email: 'admin@sample.com',
   password: 'password',
   birthdate: 'June 2, 1995',
+  confirmed_at: Time.now
 ).add_role :admin
 
 #Create teacher accounts
