@@ -34,8 +34,16 @@
       <% end %>
 
     </nav>
-
-    <div id="primary-content" class="container-fluid ">
+    <% if notice %>
+      <div id="notice" class="alert alert-success " role="alert">
+        <%= notice %>
+      </div> 
+    <% elsif alert %>
+      <div id="alert" class="alert alert-danger " role="alert">
+        <%= alert %>
+      </div>
+    <% end %>
+    <div id="primary-content" class="<%= controller.controller_name %> container-fluid ">
       <%= yield %>
     </div>
 
