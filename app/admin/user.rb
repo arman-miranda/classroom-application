@@ -1,7 +1,19 @@
 ActiveAdmin.register User, as: "All Users" do
   menu :if => proc{ can? :manage, User} 
 
-  permit_params  :email, :password, :password_confirmation, :first_name, :last_name, :birthdate, :address, role_ids: []
+  permit_params  :email, :password, :password_confirmation, :first_name, :last_name, :confirmed_at, :birthdate, :address, role_ids: [] 
+
+  controller do
+    def update
+      #Removes Devise dependency on password to make changes
+      if (params[:user][:password] && params[:user][:password_confirmation]).blank?
+        params[:user].delete("password")
+        params[:user].delete("password_confirmation")
+      end
+
+      super
+    end
+  end
 
   index do
     selectable_column
@@ -29,7 +41,7 @@ ActiveAdmin.register User, as: "All Users" do
       f.input :roles, input_html: {multiple: false }
       f.input :password
       f.input :password_confirmation
-      f.input :confirmed_at, as: :check_boxes, collection:[Time.now], member_label: "Confirm information?"
+      f.input :confirmed_at, label: "Confirm user details?", as: :boolean, checked_value: Time.now, unchecked_value: ""
     end
     f.actions
   end
