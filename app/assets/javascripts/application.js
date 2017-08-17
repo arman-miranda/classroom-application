@@ -16,3 +16,15 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+
+  $('#notice').click(function() {
+    $(this).slideUp();
+  });
+
+  $('#alert').click(function() {
+    $(this).slideUp();
+  });
+
+});
