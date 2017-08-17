@@ -10,7 +10,7 @@ ActiveAdmin.register User, as: "All Users" do
         params[:user].delete("password")
         params[:user].delete("password_confirmation")
       end
-
+      
       super
     end
   end

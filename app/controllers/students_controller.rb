@@ -2,7 +2,7 @@ class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
   def index
-    @subjects = current_user.student.subjects.all
+    @user_subjects = current_user.student.subjects.all
   end
 
   # GET /students/1

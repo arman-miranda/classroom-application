@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     if current_user.has_role? :admin
       admin_dashboard_path
     elsif current_user.has_role? :student
-      block_path(block: user_block)
+      block_path(block: user_block, student_no: user_student_no)
     elsif current_user.has_role? :teacher
       #Not yet implemented
     end
@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
   
   def user_block
     current_user.student.blocks.first.complete_block_name
+  end
+
+  def user_student_no
+    current_user.student.student_no
   end
 
 end

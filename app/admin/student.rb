@@ -5,6 +5,7 @@ actions :all, except: [:new]
 index do
   selectable_column
   id_column
+  column :student_no
   column :user
   column :blocks do |block|
     block.blocks.map(&:complete_block_name).join(",")

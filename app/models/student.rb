@@ -1,5 +1,5 @@
 class Student < ApplicationRecord
- #after_create :associate_block
+  after_create :generate_student_no
   belongs_to :user, optional: true
 
   has_one  :block_assignment, dependent: :nullify
@@ -11,9 +11,11 @@ class Student < ApplicationRecord
     "#{self.user.first_name} #{self.user.last_name}"
   end
 
-  private
-  def associate_block
-    default_block = Block.create_with(year_level: 0).find_or_create_by(name:"Default")
-    self.blocks << default_block
+  
+  def generate_student_no
+    current_known_batch = Student.all.group_by { |y| y.created_at.year }
+    order_of_enrollment = current_known_batch[Date.today.year].find_index(self)
+
+    self.update_attribute(:student_no, "#{Date.today.year}#{order_of_enrollment.to_s.rjust(6, '0')}")
   end
 end
