@@ -2,22 +2,15 @@
 
 <h1>Students</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user_subjects.each do |user_subject| %>
-      <tr>
-        <td><%= user_subject.name %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<% @user_subjects.each do |user_subject| %>
+<ul class="media-list">
+  <li class="media">
+    <%= link_to image_tag("placeholder.png", class: "media_object"), root_path, class: 'pull-left' %>
+    <div class="media-body">
+      <h4 class="media-heading"><%= user_subject.name %></h4>
+    </div>
+  </li>
+</ul>
+<% end %>
 
 <%= link_to "Logout", destroy_user_session_path, method: :delete %>
