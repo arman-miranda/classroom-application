@@ -12,4 +12,3 @@ document.addEventListener('turbolinks:load', function() {
 document.addEventListener('turbolinks:visit', function() {
           document.getElementById('primary-content').className += 'animated slideOutLeft';
 });
-

@@ -20,7 +20,7 @@
 
   <div class="form-group">
     <%= f.label :birthdate %>
-    <%= f.text_field :birthdate, class: "form-control" %>
+    <%= f.date_select :birthdate, start_year: 1957, end_year: Time.now.year %>
   </div>
 
   <div class="form-group">
@@ -30,12 +30,14 @@
 
   <div class="form-group">
     <%= f.label :role %>
-    <%= f.collection_select(:role_ids, Role.school_roles, :id, :name) %>
+    <%= f.collection_select(:role_ids, Role.school_roles, :id, :name, {}, 
+                            { class: "form-control" }) %>
   </div>
 
   <div class="form-group">
     <%= f.label "Block" %>
-    <%= f.collection_select(:temp_block, Block.all, :id, :complete_block_name) %>
+    <%= f.collection_select(:temp_block, Block.all, :id, :complete_block_name, {}, 
+                            { class: "form-control" }) %>
   </div>
 
   <div class="form-group">
@@ -52,7 +54,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: "btn btn-primary" %>
   </div>
 <% end %>
 
