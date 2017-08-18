@@ -1,0 +1,9 @@
+<% if notice %>
+  <div id="notice" class="alert alert-success " role="alert">
+    <%= notice %>
+  </div> 
+<% elsif alert %>
+  <div id="alert" class="alert alert-danger " role="alert">
+    <%= alert %>
+  </div>
+<% end %>

@@ -27,6 +27,10 @@ $(document).on('turbolinks:load', function() {
     $(this).slideUp();
   });
 
+  $('.modal').on('shown.bs.modal', function() {
+    $('#user_current_password').focus();
+  });
+
 });
 
 
