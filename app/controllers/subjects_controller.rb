@@ -1,10 +1,10 @@
 class SubjectsController < ApplicationController
+  before_action :set_subject, only: [:show]
   def index
     @subjects = Subject.all
   end
 
   def show
-
   end
 
   def new
@@ -26,5 +26,9 @@ class SubjectsController < ApplicationController
   private
     def subject_params
       params.require(:subject).permit(:name, :code)
+    end
+
+    def set_subject
+      @subject = Subject.find(params[:id])
     end
 end
