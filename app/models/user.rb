@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  validates :first_name, :last_name, :birthdate, presence: true
+  validates :first_name, :last_name, :birthdate, :role_ids, presence: true
   attr_accessor :temp_block
 
   has_one :teacher, dependent: :destroy

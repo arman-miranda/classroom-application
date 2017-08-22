@@ -30,7 +30,16 @@ $(document).on('turbolinks:load', function() {
   $('.modal').on('shown.bs.modal', function() {
     $('#user_current_password').focus();
   });
-
+  
+  $('#user_role_ids').change(function() {
+    var selected = $('#user_role_ids').find(':selected').text();
+    if(selected === "teacher"){
+      $('#block_type').text('Advisory Block');
+    } else {
+      $('#block_type').text('Block');
+    }
+    
+  });
 });
 
 

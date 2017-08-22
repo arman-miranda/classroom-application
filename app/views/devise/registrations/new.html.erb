@@ -30,12 +30,12 @@
 
   <div class="form-group">
     <%= f.label :role %>
-    <%= f.collection_select(:role_ids, Role.school_roles, :id, :name, {}, 
+    <%= f.collection_select(:role_ids, Role.school_roles, :id, :name, {prompt: 'Select Account Type'}, 
                             { class: "form-control" }) %>
   </div>
 
   <div class="form-group">
-    <%= f.label "Block" %>
+    <%= f.label "Block", id: "block_type" %>
     <%= f.collection_select(:temp_block, Block.all, :id, :complete_block_name, {}, 
                             { class: "form-control" }) %>
   </div>
