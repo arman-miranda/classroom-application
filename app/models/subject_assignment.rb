@@ -6,4 +6,5 @@ class SubjectAssignment < ApplicationRecord
   def teaching_load_name
     "#{self.subject.name}@#{self.block.complete_block_name}"
   end
+
 end
