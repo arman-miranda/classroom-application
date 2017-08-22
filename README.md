@@ -4,16 +4,16 @@
   * ~~Split Users to two resources that has different functions (Teachers and Students)~~
   * ~~No anonymous users~~
   * Subjects has their own virtual classrooms
-  * A Block also has their own virtual classroom
-  * All virtual classrooms adds the teachers and students automatically
+  * ~~A Block also has their own virtual classroom~~
+  * ~~All virtual classrooms adds the teachers and students automatically~~
 
 ---
 * ### Pages
   
-  * Can be accessed by all:
-    * Profile Page
-      * Can only edit email and password
-      * Can view all info of user
+  * ~~Can be accessed by all:~~
+    * ~~Profile Page~~
+      * ~~Can only edit email and password~~
+      * ~~Can view all info of user~~
     * ~~Login Page(with Devise)~~
   
   * Student pages

@@ -38,7 +38,6 @@ $(document).on('turbolinks:load', function() {
     } else {
       $('#block_type').text('Block');
     }
-    
   });
 });
 
