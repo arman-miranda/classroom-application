@@ -16,9 +16,9 @@
       * ~~Can view all info of user~~
     * ~~Login Page(with Devise)~~
   
-  * Student pages
-    * List of Subjects
-    * List of Grades per Subject(Final grade only, blank if not yet computed)
+  * ~~Student pages~~
+    * ~~List of Subjects~~
+    * ~~List of Grades per Subject(Final grade only, blank if not yet computed)~~
 
   * Teacher pages
     * List of student per class he handles.

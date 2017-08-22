@@ -1,6 +1,6 @@
 <div class="card-columns">
   <% @user_subjects.each do |user_subject| %>
-    <%= link_to root_path do %>
+    <%= link_to subject_path(user_subject) do %>
       <div class="card">
         <div class="card-body">
           <h4 class="card-title"><%= user_subject.name %></h4>
@@ -10,6 +10,9 @@
           <p class="card-text">
             <%= user_subject.search_teacher(current_user.student) %>
           </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"> Final Grade: - </small>
         </div>
       </div>
     <% end %>
