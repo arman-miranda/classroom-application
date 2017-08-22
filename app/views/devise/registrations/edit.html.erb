@@ -34,14 +34,14 @@
         <div class="col-md-6">
           <div class="form-group">
             <%= student.label :student_no %>
-            <%= student.text_field :student_no, value: @user.student.student_no, readonly: true, class: "form-control" %>
+            <%= student.text_field :student_no, value: @student.student_no, readonly: true, class: "form-control" %>
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="form-group">
             <%= student.label "Block" %>
-            <%= student.text_field "Block", value: @user.student.blocks.first.complete_block_name, readonly: true, class: "form-control" %>
+            <%= student.text_field "Block", value: @student.blocks.first.complete_block_name, readonly: true, class: "form-control" %>
           </div>
         </div>
       </div>

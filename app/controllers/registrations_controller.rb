@@ -1,11 +1,13 @@
 class RegistrationsController < Devise::RegistrationsController
-  protected
-  
-  def create
-    @user_student = @user.student
+  def edit
+    unless @user.student.nil?
+      @student = @user.student
+    end
+
     super
   end
-
+  protected
+  
   def after_inactive_sign_up_path_for(resource_or_scope)
     Student.find(@user.student.id).blocks << find_block
     edit_student_path(@user.student.id)
