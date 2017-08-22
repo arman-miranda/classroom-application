@@ -6,11 +6,18 @@ class RegistrationsController < Devise::RegistrationsController
 
     super
   end
+  
   protected
   
   def after_inactive_sign_up_path_for(resource_or_scope)
-    Student.find(@user.student.id).blocks << find_block
-    edit_student_path(@user.student.id)
+    if @user.has_role?(:teacher)
+      edit_teacher_path(@user.teacher.id)
+    elsif @user.has_role?(:student)
+      Student.find(@user.student.id).blocks << find_block
+      edit_student_path(@user.student.id)
+    else
+      root_path
+    end
   end
 
   private

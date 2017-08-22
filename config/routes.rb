@@ -7,8 +7,11 @@ Rails.application.routes.draw do
 
   resources :subjects
   resources :students, except: :index
+  resources :teachers
 
   get ":student_no/:block", to: "students#index", as: :block, param: :block
+
+  get "/teaching_loads", to: "teachers#index"
 
   devise_scope :user do
     root 'devise/sessions#new'

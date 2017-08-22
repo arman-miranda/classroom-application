@@ -1,11 +1,15 @@
-<% @user_subjects.each do |user_subject| %>
-<ul class="media-list">
-  <li class="media">
-    <%= link_to image_tag("placeholder.png", class: "media_object"), root_path, class: 'pull-left' %>
-    <div class="media-body">
-      <h4 class="media-heading"><%= user_subject.name %></h4>
-    </div>
-  </li>
-</ul>
-<% end %>
- 
+<div class="card-columns">
+  <% @user_subjects.each do |user_subject| %>
+    <%= link_to root_path do %>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><%= user_subject.name %></h4>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <%= user_subject.code %>
+          </h6>
+          <p class="card-text">Input teacher here</p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div> 

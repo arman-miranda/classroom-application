@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     elsif current_user.has_role? :student
       block_path(block: user_block, student_no: user_student_no)
     elsif current_user.has_role? :teacher
-      #Not yet implemented
+      teachers_path
     end
   end
 
