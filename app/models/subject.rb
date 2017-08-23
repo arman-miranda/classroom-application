@@ -7,8 +7,8 @@ class Subject < ApplicationRecord
   has_many :specialization
   has_many :teachers, through: :specialization
 
-  def search_teacher(user_block)
-    searched = self.subject_assignments.find_by_block_id(user_block.blocks.first).teacher
+  def search_teacher(block)
+    searched = self.subject_assignments.find_by_block_id(block).teacher
 
     if searched.nil?
       "No teacher assigned yet!"

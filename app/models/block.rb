@@ -21,4 +21,8 @@ class Block < ApplicationRecord
     "#{self.year_level}-#{self.name}"
   end
 
+  def find_subject_assignment_id(subject_id)
+    self.subject_assignments.find_by_subject_id(subject_id).id
+  end
+
 end

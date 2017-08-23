@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Subject Assignments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subject_assignments.each do |subject_assignment| %>
+      <tr>
+        <td><%= link_to 'Show', subject_assignment %></td>
+        <td><%= link_to 'Edit', edit_subject_assignment_path(subject_assignment) %></td>
+        <td><%= link_to 'Destroy', subject_assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Subject Assignment', new_subject_assignment_path %>

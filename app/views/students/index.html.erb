@@ -1,6 +1,6 @@
 <div class="card-columns">
   <% @user_subjects.each do |user_subject| %>
-    <%= link_to subject_path(user_subject) do %>
+   <%= link_to subject_assignment_path(id: @block.find_subject_assignment_id(user_subject)) do %>
       <div class="card">
         <div class="card-body">
           <h4 class="card-title"><%= user_subject.name %></h4>
@@ -8,7 +8,7 @@
             <%= user_subject.code %>
           </h6>
           <p class="card-text">
-            <%= user_subject.search_teacher(current_user.student) %>
+            <%= user_subject.search_teacher(current_user.student.blocks.first) %>
           </p>
         </div>
         <div class="card-footer">

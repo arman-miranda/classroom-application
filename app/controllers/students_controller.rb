@@ -2,7 +2,8 @@ class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
   def index
-    @user_subjects = current_user.student.subjects.all
+   @user_subjects = current_user.student.subjects.all
+   @block = current_user.student.blocks.first
   end
 
   # GET /students/1

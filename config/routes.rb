@@ -5,14 +5,20 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: "registrations" }
 
-  resources :subjects
-  resources :students, except: :index
+  resources :students, path: '/:student_no/:block', except: :index do
+    collection do
+      resources :subject_assignments do
+        resources :announcements
+      end
+    end
+  end
   resources :teachers
 
-  get ":student_no/:block", to: "students#index", as: :block, param: :block
+  match ":student_no/:block", to: "students#index", param: :block, via: [:get], as: :block
 
-  get "/teaching_loads", to: "teachers#index"
-
+  get "/teaching_loads", to: "teachers#index" do
+  end
+  
   devise_scope :user do
     root 'devise/sessions#new'
   end
