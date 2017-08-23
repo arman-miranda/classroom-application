@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-2">
     <div>
-      
+      <%= image_tag @teacher.user.avatar.url(:medium) %>
       <p><%= @subject.name %></p>
       <p><%= @subject.code %></p>
       <p><%= @teacher.nil? ? "Not asssigned yet" : @teacher.teacher_name %></p>
@@ -15,4 +15,3 @@
   </div>
 </div>
 
-<% console %>

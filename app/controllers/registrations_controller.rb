@@ -6,6 +6,13 @@ class RegistrationsController < Devise::RegistrationsController
 
     super
   end
+
+  def update
+    unless @user.student.nil?
+      @student = @user.student
+    end
+    super
+  end
   
   protected
   
