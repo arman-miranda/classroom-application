@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-2">
     <div>
+      <%= link_to "Download", @teacher.user.avatar.url(:original, false)%>
       <%= image_tag @teacher.user.avatar.url(:medium) %>
       <p><%= @subject.name %></p>
       <p><%= @subject.code %></p>

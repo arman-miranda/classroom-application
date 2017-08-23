@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823054659) do
+ActiveRecord::Schema.define(version: 20170823071752) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -53,6 +53,25 @@ ActiveRecord::Schema.define(version: 20170823054659) do
     t.index ["teacher_id"], name: "index_blocks_on_teacher_id", using: :btree
   end
 
+  create_table "exam_schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.text     "details",               limit: 65535
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "subject_assignment_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["subject_assignment_id"], name: "index_exam_schedules_on_subject_assignment_id", using: :btree
+  end
+
+  create_table "lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.integer  "subject_assignment_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["subject_assignment_id"], name: "index_lectures_on_subject_assignment_id", using: :btree
+  end
+
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "resource_type"
@@ -83,9 +102,13 @@ ActiveRecord::Schema.define(version: 20170823054659) do
   create_table "subject_assignments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "subject_id"
     t.integer  "block_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "teacher_id"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
     t.index ["block_id"], name: "index_subject_assignments_on_block_id", using: :btree
     t.index ["subject_id"], name: "index_subject_assignments_on_subject_id", using: :btree
     t.index ["teacher_id"], name: "index_subject_assignments_on_teacher_id", using: :btree
@@ -147,6 +170,8 @@ ActiveRecord::Schema.define(version: 20170823054659) do
   add_foreign_key "block_assignments", "blocks"
   add_foreign_key "block_assignments", "students"
   add_foreign_key "blocks", "teachers"
+  add_foreign_key "exam_schedules", "subject_assignments"
+  add_foreign_key "lectures", "subject_assignments"
   add_foreign_key "specializations", "subjects"
   add_foreign_key "specializations", "teachers"
   add_foreign_key "students", "users"
