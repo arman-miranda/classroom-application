@@ -1,0 +1,20 @@
+<%= form_for @announcement , url: subject_assignment_announcements_path(subject_assignment_id: @subject_assignment) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="card-text">
+      <%= f.text_area :content %>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>
+
+
+
+

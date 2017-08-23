@@ -12,7 +12,8 @@ class SubjectAssignmentsController < ApplicationController
   def show
     @subject = @subject_assignment.subject
     @teacher = @subject_assignment.teacher
-    @announcements = @subject_assignment.announcements
+    @announcements = @subject_assignment.announcements.order(updated_at: :desc)
+    @announcement = @subject_assignment.announcements.new
   end
 
   # GET /subject_assignments/new
