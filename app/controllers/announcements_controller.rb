@@ -24,11 +24,12 @@ class AnnouncementsController < ApplicationController
   # POST /announcements
   # POST /announcements.json
   def create
-    @announcement = SubjectAssignment.find(params[:subject_assignment_id]).announcements.build(announcement_params)
+    subject_id = params[:subject_assignment_id]
+    @announcement = SubjectAssignment.find(subject_id).announcements.build(announcement_params)
 
     respond_to do |format|
       if @announcement.save
-        format.html { redirect_to subject_assignment_announcements_path, notice: 'Announcement was successfully created.' }
+        format.html { redirect_to subject_assignment_path(id: subject_id), notice: 'Announcement was successfully created.' }
         format.json { render :show, status: :created, location: @announcement }
       else
         format.html { render :new }
