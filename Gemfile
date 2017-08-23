@@ -68,3 +68,4 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem 'faker'
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
