@@ -35,19 +35,18 @@
 
     <!--Announcement content-->
     <div class="tab-pane fade" id="announcements">
-      <div class="card">
-          <div class="card-block">
-            <h4 class="card-title">Announcement1</h4>
-            <p class="card-text">Some content</p>
-          </div>
-      </div>
-
-      <div class="card">
-          <div class="card-block">
-            <h4 class="card-title">Announcement2</h4>
-            <p class="card-text">Some content</p>
-          </div>
-      </div>
+      <% @announcements.each do |announcement| %>
+        <div class="card">
+            <div class="card-block">
+              <h4 class="card-title">
+                <%= announcement.title %>
+              </h4>
+              <p class="card-text">
+                <%= announcement.content %>
+              </p>
+            </div>
+        </div>
+      <% end %>
     </div>
     <!--End of Announcement-->
 

@@ -4,7 +4,7 @@
       
       <p><%= @subject.name %></p>
       <p><%= @subject.code %></p>
-      <p><%= @subject.search_teacher(current_user.student.blocks.first) %></p>
+      <p><%= @teacher.nil? ? "Not asssigned yet" : @teacher.teacher_name %></p>
     </div>
     <%= render "side_bar" %>
   </div>

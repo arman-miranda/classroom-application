@@ -10,6 +10,9 @@ class SubjectAssignmentsController < ApplicationController
   # GET /subject_assignments/1
   # GET /subject_assignments/1.json
   def show
+    @subject = @subject_assignment.subject
+    @teacher = @subject_assignment.teacher
+    @announcements = @subject_assignment.announcements
   end
 
   # GET /subject_assignments/new
