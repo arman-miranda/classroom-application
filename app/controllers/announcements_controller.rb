@@ -24,7 +24,6 @@ class AnnouncementsController < ApplicationController
   # POST /announcements
   # POST /announcements.json
   def create
-    subject_id = params[:subject_assignment_id]
     @announcement = SubjectAssignment.find(subject_id).announcements.build(announcement_params)
 
     respond_to do |format|
@@ -57,7 +56,7 @@ class AnnouncementsController < ApplicationController
   def destroy
     @announcement.destroy
     respond_to do |format|
-      format.html { redirect_to announcements_url, notice: 'Announcement was successfully destroyed.' }
+      format.html { redirect_to subject_assignment_path(id: subject_id), notice: 'Announcement was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,6 +65,10 @@ class AnnouncementsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_announcement
       @announcement = Announcement.find(params[:id])
+    end
+
+    def subject_id
+       params[:subject_assignment_id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

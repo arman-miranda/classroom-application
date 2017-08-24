@@ -9,9 +9,11 @@
         <%= link_to "Announcements", "#announcements", class: 'nav-link', data: { toggle: "tab" } %>
       </li>
 
+      <!-- Deadlines Navbar
       <li class="nav-item">
         <%= link_to "Deadlines", "#deadlines", class: 'nav-link', data: { toggle: "tab" } %>
       </li>
+      -->
 
     </ul>
   </div>
@@ -19,26 +21,29 @@
   <!--Exam Schedule content-->
   <div class="tab-content">
     <div class="tab-pane fade show active" id="exam_scheds">
-      <%= link_to "javascript:;", data: { toggle: "modal", target: "#add_exam_sched" } do %>
-      <div class="card mb-3">
-          <div class="card-block">
-            <h4 class="card-title">Add a new schedule</h4>
+      <% if current_user.has_role? :teacher %>
+        <%= link_to "javascript:;", data: { toggle: "modal", target: "#add_exam_sched" } do %>
+          <div class="card mb-3">
+              <div class="card-block">
+                <h4 class="card-title">Add a new schedule</h4>
+              </div>
           </div>
-      </div>
-    <% end %>
+        <% end %>
+      <% end %>
 
     <% @exam_schedules.each do |exam_schedule| %>
       <div class="card mb-3 show-crud">
           <div class="card-block">
             <h4 class="card-title"><%= exam_schedule.title %></h4>
             <p class="card-text"><%= exam_schedule.details %></p>
-
+          <% if current_user.has_role? :teacher %>
             <div class="crud-tools">
-              <%= link_to "Edit", edit_subject_assignment_exam_schedule_path(id: exam_schedule, subject_assignment_id: @subject_assignment), remote: true %>
+              <%#= link_to "Edit", edit_subject_assignment_exam_schedule_path(id: exam_schedule, subject_assignment_id: @subject_assignment), remote: true %>
               <%= link_to "Delete", subject_assignment_exam_schedule_path(id: exam_schedule, subject_assignment_id: @subject_assignment),
                 method: :delete, 
                 data: { confirm: 'Are you sure?' } %>
             </div>
+          <% end %>
           </div>
 
           <div class="card-footer">
@@ -63,15 +68,17 @@
     <!--Announcement content-->
     <div class="tab-pane fade" id="announcements">
       
-      <a href="javascript:;" data-toggle="modal" data-target="#add_announcement">
-        <div class="card mb-3">
-          <div class="card-block">
-            <h4 class="card-title">
-              Add new announcement
-            </h4>
+      <% if current_user.has_role? :teacher %>
+        <a href="javascript:;" data-toggle="modal" data-target="#add_announcement">
+          <div class="card mb-3">
+            <div class="card-block">
+              <h4 class="card-title">
+                Add new announcement
+              </h4>
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+      <% end %> 
 
       <% @announcements.each do |announcement| %>
         <div class="card mb-3 show-crud">
@@ -82,13 +89,21 @@
               <p class="card-text">
                 <%= announcement.content %>
               </p>
+          <% if current_user.has_role? :teacher %>
+            <div class="crud-tools">
+              <%#= link_to "Edit", edit_subject_assignment_exam_schedule_path(id: exam_schedule, subject_assignment_id: @subject_assignment), remote: true %>
+              <%= link_to "Delete", subject_assignment_announcement_path(id: announcement, subject_assignment_id: @subject_assignment),
+                method: :delete, 
+                data: { confirm: 'Are you sure?' } %>
+            </div>
+          <% end %>
             </div>
         </div>
       <% end %>
     </div>
     <!--End of Announcement-->
 
-    <!--Deadlines-->
+    <!--Deadlines
     <div class="tab-pane fade" id="deadlines">
       <div class="card mb-3">
           <div class="card-block">
@@ -102,7 +117,7 @@
             <p class="card-text">Some content</p>
           </div>
       </div>
-    </div>
+    </div> -->
     <!--End of deadlines-->
 
   </div>

@@ -5,7 +5,7 @@ Subject.delete_all
 Block.delete_all
 
 #Create a admin account
-User.create!(
+admin = User.create(
   first_name: 'Admin',
   last_name:  'Admin',
   email: 'admin@sample.com',
@@ -14,9 +14,11 @@ User.create!(
   confirmed_at: Time.now
 ).add_role :admin
 
+admin.save!
+
 10.times do |i|
   #Create Teacher accounts
-  User.create!(
+  teacher = User.create(
     first_name: Faker::Name.first_name,
     last_name:  Faker::Name.last_name,
     email:      Faker::Internet.unique.email,
@@ -24,9 +26,12 @@ User.create!(
     birthdate:  Faker::Date.birthday(18, 65),
     confirmed_at: Time.now
   ).add_role :teacher
+  
+  teacher.save!
+  
 
   #Create Student accounts
-  User.create!(
+  student = User.create(
     first_name: Faker::Name.first_name,
     last_name:  Faker::Name.last_name,
     email:      Faker::Internet.unique.email,
@@ -34,6 +39,8 @@ User.create!(
     birthdate:  Faker::Date.birthday(18,65),
     confirmed_at: Time.now
   ).add_role :student
+
+  student.save!
   
   #Create Subjects
   Subject.create!(
