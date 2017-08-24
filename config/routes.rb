@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection do
       resources :subject_assignments do
         resources :announcements
+        resources :exam_schedules
       end
     end
   end

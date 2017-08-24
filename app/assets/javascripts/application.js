@@ -28,7 +28,7 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.modal').on('shown.bs.modal', function() {
-    $('#user_current_password').focus();
+    $(this).find('[autofocus]').focus();
   });
   
   $('#user_role_ids').change(function() {

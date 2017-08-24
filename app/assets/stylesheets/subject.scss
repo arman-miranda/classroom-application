@@ -1,3 +1,19 @@
 // Place all the styles related to the Subject controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.subject_assignments {
+  #remove-border {
+    border: none;
+  }
+
+
+  #card-columns {
+    column-count: 3;
+  }
+
+  .card-header {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin-bottom: 10px;
+  }
+}

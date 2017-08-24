@@ -1,4 +1,4 @@
-<div class="card text-center">
+<div class="card text-center" id="remove-border">
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
@@ -16,28 +16,48 @@
     </ul>
   </div>
 
+  <!--Exam Schedule content-->
   <div class="tab-content">
     <div class="tab-pane fade show active" id="exam_scheds">
-      <div class="card">
+      <%= link_to "javascript:;", data: { toggle: "modal", target: "#add_exam_sched" } do %>
+      <div class="card mb-3">
           <div class="card-block">
-            <h4 class="card-title">Schedule1</h4>
-            <p class="card-text">Some content</p>
+            <h4 class="card-title">Add a new schedule</h4>
           </div>
       </div>
+    <% end %>
 
-      <div class="card">
+    <% @exam_schedules.each do |exam_schedule| %>
+      <div class="card mb-3">
           <div class="card-block">
-            <h4 class="card-title">Schedule2</h4>
-            <p class="card-text">Some content</p>
+            <h4 class="card-title"><%= exam_schedule.title %></h4>
+            <p class="card-text"><%= exam_schedule.details %></p>
+          </div>
+
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-md-6">
+                <small>Exam Start: 
+                  <%=format_date(exam_schedule.start_date) %>
+                </small>
+              </div>
+
+              <div class="col-md-6">
+                <small>Exam Finish: 
+                  <%= format_date(exam_schedule.end_date) %>
+                </small>
+              </div>
+            </div>
           </div>
       </div>
+    <% end %>
     </div>
 
     <!--Announcement content-->
     <div class="tab-pane fade" id="announcements">
       
       <a href="javascript:;" data-toggle="modal" data-target="#add_announcement">
-        <div class="card">
+        <div class="card mb-3">
           <div class="card-block">
             <h4 class="card-title">
               Add new announcement
@@ -47,7 +67,7 @@
       </a>
 
       <% @announcements.each do |announcement| %>
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-block">
               <h4 class="card-title">
                 <%= announcement.title %>
@@ -63,13 +83,13 @@
 
     <!--Deadlines-->
     <div class="tab-pane fade" id="deadlines">
-      <div class="card">
+      <div class="card mb-3">
           <div class="card-block">
             <h4 class="card-title">Deadline1</h4>
             <p class="card-text">Some content</p>
           </div>
       </div>
-      <div class="card">
+      <div class="card mb-3">
           <div class="card-block">
             <h4 class="card-title">Deadline2</h4>
             <p class="card-text">Some content</p>
@@ -84,3 +104,4 @@
 </div>
 
 <%= render 'announcement_form' %>
+<%= render 'exam_sched_form' %>

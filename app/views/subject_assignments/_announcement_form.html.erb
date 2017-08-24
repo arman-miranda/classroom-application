@@ -8,7 +8,7 @@
           url: subject_assignment_announcements_path(subject_assignment_id: @subject_assignment) do |f| %>
             <div class="form-group">
               <%= f.label :title %>
-              <%= f.text_field :title, class: "form-control" %>
+              <%= f.text_field :title, class: "form-control", autofocus: true %>
             </div>
 
             <div class="form-group">

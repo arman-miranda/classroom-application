@@ -16,6 +16,7 @@ class SubjectAssignmentsController < ApplicationController
     @announcements = @subject_assignment.announcements.order(updated_at: :desc)
     @announcement = @subject_assignment.announcements.new
     @exam_schedules = @subject_assignment.exam_schedules.order(updated_at: :desc)
+    @exam_schedule = @subject_assignment.exam_schedules.new
   end
 
   # GET /subject_assignments/new
