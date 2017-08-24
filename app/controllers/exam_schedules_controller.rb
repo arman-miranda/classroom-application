@@ -24,7 +24,6 @@ class ExamSchedulesController < ApplicationController
   # POST /exam_schedules
   # POST /exam_schedules.json
   def create
-    subject_id = params[:subject_assignment_id]
     @exam_schedule = SubjectAssignment.find(subject_id).exam_schedules.build(exam_schedule_params)
 
     respond_to do |format|
@@ -57,7 +56,7 @@ class ExamSchedulesController < ApplicationController
   def destroy
     @exam_schedule.destroy
     respond_to do |format|
-      format.html { redirect_to exam_schedules_url, notice: 'Exam schedule was successfully destroyed.' }
+      format.html { redirect_to subject_assignment_path(id: subject_id), notice: 'Exam schedule was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,6 +65,10 @@ class ExamSchedulesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_exam_schedule
       @exam_schedule = ExamSchedule.find(params[:id])
+    end
+
+    def subject_id
+       params[:subject_assignment_id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

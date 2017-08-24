@@ -28,10 +28,17 @@
     <% end %>
 
     <% @exam_schedules.each do |exam_schedule| %>
-      <div class="card mb-3">
+      <div class="card mb-3 show-crud">
           <div class="card-block">
             <h4 class="card-title"><%= exam_schedule.title %></h4>
             <p class="card-text"><%= exam_schedule.details %></p>
+
+            <div class="crud-tools">
+              <%= link_to "Edit", edit_subject_assignment_exam_schedule_path(id: exam_schedule, subject_assignment_id: @subject_assignment), remote: true %>
+              <%= link_to "Delete", subject_assignment_exam_schedule_path(id: exam_schedule, subject_assignment_id: @subject_assignment),
+                method: :delete, 
+                data: { confirm: 'Are you sure?' } %>
+            </div>
           </div>
 
           <div class="card-footer">
@@ -67,7 +74,7 @@
       </a>
 
       <% @announcements.each do |announcement| %>
-        <div class="card mb-3">
+        <div class="card mb-3 show-crud">
             <div class="card-block">
               <h4 class="card-title">
                 <%= announcement.title %>
@@ -104,4 +111,4 @@
 </div>
 
 <%= render 'announcement_form' %>
-<%= render 'exam_sched_form' %>
+<%= render 'exam_sched_form', dom_id: "new_sched" %>
