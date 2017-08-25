@@ -14,8 +14,8 @@
             <%= current_user.full_name %>
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-            <%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item" %>
-            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <%= link_to "My Profile", edit_user_registration_path, class: "dropdown-item bg-light" %>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item bg-light" %>
           </div>
         </li>
       </ul>
