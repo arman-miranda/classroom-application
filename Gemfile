@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.4'
 # Use sqlite3 as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', '~>0.4.9'
 #gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -40,10 +40,10 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'rspec-rails'
-  gem 'spring-commands-rspec'
-  gem 'guard-rspec'
-  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~>3.6.1'
+  gem 'spring-commands-rspec', '~>1.0.4'
+  gem 'guard-rspec', '~>4.7.3'
+  gem 'factory_girl_rails', '~>4.8.0'
 end
 
 group :test do
