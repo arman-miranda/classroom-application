@@ -12,9 +12,12 @@ Rails.application.routes.draw do
       resources :subject_assignments do
         resources :announcements
         resources :exam_schedules
+        resources :subject_grades
       end
+
     end
   end
+
   resources :teachers
 
 

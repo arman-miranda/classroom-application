@@ -20,7 +20,11 @@ class RegistrationsController < Devise::RegistrationsController
     if @user.has_role?(:teacher)
       Teacher.find(@user.teacher.id).update_attribute(:advisory_block, find_block)
     elsif @user.has_role?(:student)
-      Student.find(@user.student.id).blocks << find_block
+      new_student = Student.find(@user.student.id)
+      new_student.blocks << find_block
+      new_student.subjects.each do |subject|
+        new_student.subject_grades.create!(subject: subject)
+      end 
     end
       root_path
   end
@@ -30,4 +34,5 @@ class RegistrationsController < Devise::RegistrationsController
   def find_block
     Block.find(params[:user][:temp_block])
   end
+
 end

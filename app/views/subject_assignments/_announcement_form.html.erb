@@ -1,6 +1,5 @@
-
-<%= form_for @announcement , 
-  url: subject_assignment_announcements_path(subject_assignment_id: @subject_assignment) do |f| %>
+<%= form_for announcement, 
+  url: subject_assignment_announcements_path(subject_assignment_id: @subject_assignment.id) do |f| %>
   <!--Modal function start-->  
   <div class="modal fade" id="add_announcement" tabindex="-1", data-backdrop="false">
     <div class="modal-dialog">

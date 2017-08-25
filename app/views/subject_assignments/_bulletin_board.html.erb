@@ -31,7 +31,7 @@
         <% end %>
       <% end %>
 
-    <% @exam_schedules.each do |exam_schedule| %>
+    <% @subject_assignment.exam_schedules.each do |exam_schedule| %>
       <div class="card mb-3 show-crud">
           <div class="card-block">
             <h4 class="card-title"><%= exam_schedule.title %></h4>
@@ -39,7 +39,7 @@
           <% if current_user.has_role? :teacher %>
             <div class="crud-tools">
               <%#= link_to "Edit", edit_subject_assignment_exam_schedule_path(id: exam_schedule, subject_assignment_id: @subject_assignment), remote: true %>
-              <%= link_to "Delete", subject_assignment_exam_schedule_path(id: exam_schedule, subject_assignment_id: @subject_assignment),
+              <%= link_to "Delete", subject_assignment_exam_schedule_path(id: exam_schedule, subject_assignment_id: @subject_assignment.id),
                 method: :delete, 
                 data: { confirm: 'Are you sure?' } %>
             </div>
@@ -80,7 +80,7 @@
         </a>
       <% end %> 
 
-      <% @announcements.each do |announcement| %>
+      <% @subject_assignment.announcements.each do |announcement| %>
         <div class="card mb-3 show-crud">
             <div class="card-block">
               <h4 class="card-title">
@@ -92,7 +92,7 @@
           <% if current_user.has_role? :teacher %>
             <div class="crud-tools">
               <%#= link_to "Edit", edit_subject_assignment_exam_schedule_path(id: exam_schedule, subject_assignment_id: @subject_assignment), remote: true %>
-              <%= link_to "Delete", subject_assignment_announcement_path(id: announcement, subject_assignment_id: @subject_assignment),
+              <%= link_to "Delete", subject_assignment_announcement_path(id: announcement, subject_assignment_id: @subject_assignment.id),
                 method: :delete, 
                 data: { confirm: 'Are you sure?' } %>
             </div>
@@ -125,5 +125,5 @@
   
 </div>
 
-<%= render 'announcement_form' %>
-<%= render 'exam_sched_form', dom_id: "new_sched" %>
+<%= render 'announcement_form', announcement: @subject_assignment.announcement %>
+<%= render 'exam_sched_form', exam_schedule: @subject_assignment.exam_schedule %>

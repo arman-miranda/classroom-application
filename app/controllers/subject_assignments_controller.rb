@@ -11,13 +11,13 @@ class SubjectAssignmentsController < ApplicationController
   # GET /subject_assignments/1
   # GET /subject_assignments/1.json
   def show
-    @subject = @subject_assignment.subject
-    @teacher = @subject_assignment.teacher
-    @announcements = @subject_assignment.announcements.order(updated_at: :desc)
-    @announcement = @subject_assignment.announcements.new
-    @exam_schedules = @subject_assignment.exam_schedules.order(updated_at: :desc)
-    @exam_schedule = @subject_assignment.exam_schedules.new
-    @collection = nil
+    @subject_assignment = SubjectAssignmentFacade.new(@subject_assignment)
+   #@subject = @subject_assignment.subject
+   #@teacher = @subject_assignment.teacher
+   #@announcements = @subject_assignment.announcements.order(updated_at: :desc)
+   #@announcement = @subject_assignment.announcements.new
+   #@exam_schedules = @subject_assignment.exam_schedules.order(updated_at: :desc)
+   #@exam_schedule = @subject_assignment.exam_schedules.new
   end
 
   # GET /subject_assignments/new

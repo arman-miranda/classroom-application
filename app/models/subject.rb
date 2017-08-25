@@ -7,6 +7,8 @@ class Subject < ApplicationRecord
   has_many :specialization
   has_many :teachers, through: :specialization
 
+  has_many :subject_grades
+
   def search_teacher(block)
     searched = self.subject_assignments.find_by_block_id(block).teacher
 

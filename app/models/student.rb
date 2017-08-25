@@ -7,6 +7,8 @@ class Student < ApplicationRecord
 
   has_many   :subjects, through: :blocks
 
+  has_many   :subject_grades, dependent: :destroy
+
   def student_name 
     "#{self.user.first_name} #{self.user.last_name}"
   end
@@ -18,4 +20,5 @@ class Student < ApplicationRecord
 
     self.update_attribute(:student_no, "#{Date.today.year}#{order_of_enrollment.to_s.rjust(6, '0')}")
   end
+
 end

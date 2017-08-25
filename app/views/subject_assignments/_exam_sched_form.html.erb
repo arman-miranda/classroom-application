@@ -1,5 +1,5 @@
-<%= form_for @exam_schedule , 
-  url: subject_assignment_exam_schedules_path(subject_assignment_id: @subject_assignment), html: { id: dom_id } do |f| %>
+<%= form_for exam_schedule , 
+  url: subject_assignment_exam_schedules_path(subject_assignment_id: @subject_assignment.id) do |f| %>
 
   <div class="modal fade" id="add_exam_sched" tabindex="-1", data-backdrop="false">
     <div class="modal-dialog">

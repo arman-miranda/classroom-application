@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823071752) do
+ActiveRecord::Schema.define(version: 20170825000747) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -64,6 +64,15 @@ ActiveRecord::Schema.define(version: 20170823071752) do
     t.index ["subject_assignment_id"], name: "index_exam_schedules_on_subject_assignment_id", using: :btree
   end
 
+  create_table "grades", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "subject_grade_id"
+    t.string   "source_name"
+    t.integer  "score"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["subject_grade_id"], name: "index_grades_on_subject_grade_id", using: :btree
+  end
+
   create_table "lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.integer  "subject_assignment_id"
@@ -112,6 +121,15 @@ ActiveRecord::Schema.define(version: 20170823071752) do
     t.index ["block_id"], name: "index_subject_assignments_on_block_id", using: :btree
     t.index ["subject_id"], name: "index_subject_assignments_on_subject_id", using: :btree
     t.index ["teacher_id"], name: "index_subject_assignments_on_teacher_id", using: :btree
+  end
+
+  create_table "subject_grades", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "student_id"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_subject_grades_on_student_id", using: :btree
+    t.index ["subject_id"], name: "index_subject_grades_on_subject_id", using: :btree
   end
 
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -171,6 +189,7 @@ ActiveRecord::Schema.define(version: 20170823071752) do
   add_foreign_key "block_assignments", "students"
   add_foreign_key "blocks", "teachers"
   add_foreign_key "exam_schedules", "subject_assignments"
+  add_foreign_key "grades", "subject_grades"
   add_foreign_key "lectures", "subject_assignments"
   add_foreign_key "specializations", "subjects"
   add_foreign_key "specializations", "teachers"
@@ -178,6 +197,8 @@ ActiveRecord::Schema.define(version: 20170823071752) do
   add_foreign_key "subject_assignments", "blocks"
   add_foreign_key "subject_assignments", "subjects"
   add_foreign_key "subject_assignments", "teachers"
+  add_foreign_key "subject_grades", "students"
+  add_foreign_key "subject_grades", "subjects"
   add_foreign_key "subjects", "blocks"
   add_foreign_key "teachers", "users"
 end
