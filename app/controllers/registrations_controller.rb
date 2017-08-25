@@ -1,8 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def edit
-    unless @user.student.nil?
-      @student = @user.student
-    end
+    @student = @user.student unless @user.student.nil?
 
     super
   end
