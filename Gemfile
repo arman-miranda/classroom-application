@@ -24,7 +24,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~>4.3.1'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -47,8 +47,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara-webkit'
-  gem 'selenium-webdriver'
+  gem 'capybara-webkit', '~>1.14.0'
+  gem 'selenium-webdriver', '~>3.5.1'
 end
 
 group :development do
@@ -56,16 +56,16 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', '~>2.0.2'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'activeadmin', github: 'activeadmin/activeadmin'
-gem 'devise'
-gem 'cancancan'
-gem 'rolify'
-gem 'faker'
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'activeadmin', github: 'activeadmin/activeadmin' 
+gem 'devise', '~>4.3.0'
+gem 'cancancan', '~>2.0.0'
+gem 'rolify', '~>5.1.0'
+gem 'faker', '~>1.8.4'
+gem "paperclip", '~>5.1.0'
