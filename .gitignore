@@ -19,3 +19,20 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+#Ignore Spring files.
+/spring/*.pid
+
+#Ignore uploaded test images.
+/public/system/*
+
+#Ignore vim files
+*~
+*.swp
+*.swo
+
+# General
+*.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
