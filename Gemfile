@@ -64,7 +64,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'activeadmin', github: 'activeadmin/activeadmin' 
-gem 'devise', '~>4.3.0'
+gem 'devise', '~>4.7.1'
 gem 'cancancan', '~>2.0.0'
 gem 'rolify', '~>5.1.0'
 gem 'faker', '~>1.8.4'
